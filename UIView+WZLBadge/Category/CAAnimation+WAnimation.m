@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Weng-Zilin. All rights reserved.
 //
 
-#import "NSObject+WAnimation.h"
+#import "CAAnimation+WAnimation.h"
 
-@implementation NSObject (WAnimation)
+@implementation CAAnimation (WAnimation)
 //breathing forever
 +(CABasicAnimation *)opacityForever_Animation:(float)time
 {
@@ -40,13 +40,13 @@
 }
 
 //rotate
-+(CABasicAnimation *)rotation:(float)dur degree:(float)degree direction:(int)direction repeatCount:(int)repeatCount
++(CABasicAnimation *)rotation:(float)dur degree:(float)degree direction:(WAxis)axis repeatCount:(int)repeatCount
 {
-    CATransform3D rotationTransform  = CATransform3DMakeRotation(degree, 0, 0,direction);
     CABasicAnimation* animation;
-    animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    
-    animation.toValue= [NSValue valueWithCATransform3D:rotationTransform];
+    NSArray *axisArr = @[@"transform.rotation.x", @"transform.rotation.y", @"transform.rotation.z"];
+    animation = [CABasicAnimation animationWithKeyPath:axisArr[axis]];
+    animation.fromValue = [NSNumber numberWithFloat:0];
+    animation.toValue= [NSNumber numberWithFloat:degree];
     animation.duration= dur;
     animation.autoreverses= NO;
     animation.cumulative= YES;

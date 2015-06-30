@@ -9,7 +9,7 @@
 #import "UIView+WZLBadge.h"
 #import <objc/runtime.h>
 #import "UIView+Frame.h"
-#import "NSObject+WAnimation.h"
+#import "CAAnimation+WAnimation.h"
 
 //key for associative methods during runtime
 static char badgeLabelKey;
@@ -19,10 +19,19 @@ static char badgeAniTypeKey;
 static char badgeFrameJey;
 
 #define kBadgeBreatheAniKey     @"breathe"
+#define kBadgeRotateAniKey      @"rotate"
 
 @implementation UIView (WZLBadge)
 
 #pragma mark -- public methods
+/**
+ *  show badge with red dot style and WBadgeAnimTypeNone by default.
+ */
+- (void)showBadge
+{
+    [self showBadgeWithStyle:WBadgeStyleRedDot value:0 animationType:WBadgeAnimTypeNone];
+}
+
 /**
  *  showBadge
  *
@@ -83,9 +92,7 @@ static char badgeFrameJey;
         self.badge.tag = WBadgeStyleNew;
         self.badge.width = 20;
         self.badge.height = 13;
-        self.badge.bottom = 0;
         self.badge.center = CGPointMake(self.width, 0);
-        self.badge.textAlignment = NSTextAlignmentCenter;
         self.badge.font = [UIFont boldSystemFontOfSize:9];
         self.badge.layer.cornerRadius = self.badge.height / 3;
     }
@@ -94,7 +101,17 @@ static char badgeFrameJey;
 
 - (void)showNumberBadgeWithValue:(NSInteger)value
 {
-    
+    [self badgeInit];
+    if (self.badge.tag != WBadgeStyleNumber) {
+        self.badge.tag = WBadgeStyleNumber;
+        self.badge.text = [NSString stringWithFormat:@"%@", @(value)];
+        self.badge.width = 12;
+        self.badge.height = 12;
+        self.badge.center = CGPointMake(self.width, 0);
+        self.badge.font = [UIFont boldSystemFontOfSize:9];
+        self.badge.layer.cornerRadius = self.badge.height / 2;
+    }
+    self.badge.hidden = NO;
 }
 
 //lazy loading
@@ -109,6 +126,7 @@ static char badgeFrameJey;
     if (nil == self.badge) {
         CGRect frm = CGRectMake(self.width, -6, 6, 6);
         self.badge = [[UILabel alloc] initWithFrame:frm];
+        self.badge.textAlignment = NSTextAlignmentCenter;
         self.badge.center = CGPointMake(self.width, 0);
         self.badge.backgroundColor = self.badgeBgColor;
         self.badge.textColor = self.badgeTextColor;
@@ -127,9 +145,17 @@ static char badgeFrameJey;
 {
     if (self.aniType == WBadgeAnimTypeBreathe)
     {
-        [self.badge.layer addAnimation:[NSObject opacityForever_Animation:1.4] forKey:kBadgeBreatheAniKey];
+        [self.badge.layer addAnimation:[CAAnimation opacityForever_Animation:1.4]
+                                forKey:kBadgeBreatheAniKey];
     }
-    
+    else if(self.aniType == WBadgeAnimTypeRotate)
+    {
+        [self.badge.layer addAnimation:[CAAnimation rotation:2
+                                                   degree:2*M_PI
+                                                direction:WAxisY
+                                              repeatCount:MAXFLOAT]
+                                forKey:kBadgeRotateAniKey];
+    }
 }
 
 
@@ -192,6 +218,11 @@ static char badgeFrameJey;
         return  CGRectMake(x, y, width, height);
     } else
         return CGRectZero;
+}
+
+- (void)setBadgeFrame:(CGRect)badgeFrame
+{
+    
 }
 
 

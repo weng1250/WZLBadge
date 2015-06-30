@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, WBadgeStyle)
 typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 {
     WBadgeAnimTypeNone = 0,         /* without animation, badge stays still */
+    WBadgeAnimTypeRotate,           /* rotate effect */
     WBadgeAnimTypeBreathe           /* breathing light effect, which makes badge more apparent */
 };
 
@@ -50,6 +51,7 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 *   @param aniType
  */
 - (void)showBadgeWithStyle:(WBadgeStyle)style value:(NSInteger)value animationType:(WBadgeAnimType)aniType;
+
 
 /**
  *  clear badge

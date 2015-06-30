@@ -16,7 +16,8 @@
 		19C18C601B3AAEBA00BD63D2 /* WZLBadgeDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C5F1B3AAEBA00BD63D2 /* WZLBadgeDemoTests.m */; };
 		19C18C6C1B3AAF0A00BD63D2 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C6B1B3AAF0A00BD63D2 /* UIView+WZLBadge.m */; };
 		19C18C701B3BB24600BD63D2 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C6F1B3BB24600BD63D2 /* UIView+Frame.m */; };
-		19C18C761B3D50D600BD63D2 /* NSObject+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C751B3D50D600BD63D2 /* NSObject+WAnimation.m */; };
+		19C18C761B3D50D600BD63D2 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C751B3D50D600BD63D2 /* CAAnimation+WAnimation.m */; };
+		19C18C7B1B42496700BD63D2 /* logo@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19C18C7A1B42496700BD63D2 /* logo@2x.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +48,9 @@
 		19C18C6B1B3AAF0A00BD63D2 /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
 		19C18C6E1B3BB24600BD63D2 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		19C18C6F1B3BB24600BD63D2 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		19C18C741B3D50D600BD63D2 /* NSObject+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WAnimation.h"; sourceTree = "<group>"; };
-		19C18C751B3D50D600BD63D2 /* NSObject+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WAnimation.m"; sourceTree = "<group>"; };
+		19C18C741B3D50D600BD63D2 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
+		19C18C751B3D50D600BD63D2 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
+		19C18C7A1B42496700BD63D2 /* logo@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo@2x.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				19C18C4D1B3AAEBA00BD63D2 /* Main.storyboard */,
 				19C18C501B3AAEBA00BD63D2 /* Images.xcassets */,
 				19C18C521B3AAEBA00BD63D2 /* LaunchScreen.xib */,
+				19C18C7A1B42496700BD63D2 /* logo@2x.jpg */,
 				19C18C431B3AAEBA00BD63D2 /* Supporting Files */,
 			);
 			path = WZLBadgeDemo;
@@ -144,8 +147,8 @@
 			children = (
 				19C18C6E1B3BB24600BD63D2 /* UIView+Frame.h */,
 				19C18C6F1B3BB24600BD63D2 /* UIView+Frame.m */,
-				19C18C741B3D50D600BD63D2 /* NSObject+WAnimation.h */,
-				19C18C751B3D50D600BD63D2 /* NSObject+WAnimation.m */,
+				19C18C741B3D50D600BD63D2 /* CAAnimation+WAnimation.h */,
+				19C18C751B3D50D600BD63D2 /* CAAnimation+WAnimation.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				19C18C4F1B3AAEBA00BD63D2 /* Main.storyboard in Resources */,
 				19C18C541B3AAEBA00BD63D2 /* LaunchScreen.xib in Resources */,
+				19C18C7B1B42496700BD63D2 /* logo@2x.jpg in Resources */,
 				19C18C511B3AAEBA00BD63D2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,7 +256,7 @@
 			files = (
 				19C18C6C1B3AAF0A00BD63D2 /* UIView+WZLBadge.m in Sources */,
 				19C18C4C1B3AAEBA00BD63D2 /* ViewController.m in Sources */,
-				19C18C761B3D50D600BD63D2 /* NSObject+WAnimation.m in Sources */,
+				19C18C761B3D50D600BD63D2 /* CAAnimation+WAnimation.m in Sources */,
 				19C18C491B3AAEBA00BD63D2 /* AppDelegate.m in Sources */,
 				19C18C701B3BB24600BD63D2 /* UIView+Frame.m in Sources */,
 				19C18C461B3AAEBA00BD63D2 /* main.m in Sources */,
@@ -382,8 +386,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WZLBadgeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "87d35d55-5d56-45c5-831c-17634179a8de";
 			};
 			name = Debug;
 		};
@@ -392,8 +398,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WZLBadgeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "87d35d55-5d56-45c5-831c-17634179a8de";
 			};
 			name = Release;
 		};
@@ -450,6 +458,7 @@
 				19C18C651B3AAEBA00BD63D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19C18C661B3AAEBA00BD63D2 /* Build configuration list for PBXNativeTarget "WZLBadgeDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +467,7 @@
 				19C18C681B3AAEBA00BD63D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

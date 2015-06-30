@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>Weng-Zilin.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.autonavi.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -29,12 +29,12 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>Weng-Zilin.WZLBadgeDemo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>WBadge</string>
 			</array>
-			<key>CFBundleURLName</key>
-			<string>Weng-Zilin.WZLBadgeDemo</string>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
