@@ -20,6 +20,8 @@ static char badgeFrameJey;
 
 #define kBadgeBreatheAniKey     @"breathe"
 #define kBadgeRotateAniKey      @"rotate"
+#define kBadgeShakeAniKey       @"shake"
+#define kBadgeScaleAniKey       @"scale"
 
 @implementation UIView (WZLBadge)
 
@@ -101,12 +103,26 @@ static char badgeFrameJey;
 
 - (void)showNumberBadgeWithValue:(NSInteger)value
 {
+    if (value < 0) {
+        return;
+    }
     [self badgeInit];
     if (self.badge.tag != WBadgeStyleNumber) {
         self.badge.tag = WBadgeStyleNumber;
-        self.badge.text = [NSString stringWithFormat:@"%@", @(value)];
-        self.badge.width = 12;
+        
+        //maximun value allowed is 99. When the value is greater than 99, "99+" will be shown.
+        if (value >=100) {
+            self.badge.text = @"99+";
+        } else {
+            self.badge.text = [NSString stringWithFormat:@"%@", @(value)];
+        }
+        [self adjustLabelWidth:self.badge];
+        self.badge.width = self.badge.width - 4;
         self.badge.height = 12;
+        if (self.badge.width < self.badge.height) {
+            self.badge.width = self.badge.height;
+        }
+        
         self.badge.center = CGPointMake(self.width, 0);
         self.badge.font = [UIFont boldSystemFontOfSize:9];
         self.badge.layer.cornerRadius = self.badge.height / 2;
@@ -124,7 +140,8 @@ static char badgeFrameJey;
         self.badgeTextColor = [UIColor whiteColor];
     }
     if (nil == self.badge) {
-        CGRect frm = CGRectMake(self.width, -6, 6, 6);
+        CGFloat redotWidth = 8;
+        CGRect frm = CGRectMake(self.width, -redotWidth, redotWidth, redotWidth);
         self.badge = [[UILabel alloc] initWithFrame:frm];
         self.badge.textAlignment = NSTextAlignmentCenter;
         self.badge.center = CGPointMake(self.width, 0);
@@ -133,14 +150,30 @@ static char badgeFrameJey;
         self.badge.text = @"";
         self.badge.tag = WBadgeStyleRedDot;//red dot by default
         self.badge.layer.cornerRadius = self.badge.width / 2;
-        self.badge.clipsToBounds = NO;
         self.badge.layer.masksToBounds = YES;//very important
         [self addSubview:self.badge];
     }
 }
 
+#pragma mark --  other private methods
+- (void)adjustLabelWidth:(UILabel *)label
+{
+    [label setNumberOfLines:0];
+    NSString *s = label.text;
+    UIFont *font = [UIFont fontWithName:@"Arial" size:label.font.pointSize];
+    CGSize size = CGSizeMake(320,2000);
+    CGSize labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+    CGRect frame = label.frame;
+    frame.size = labelsize;
+    [label setFrame:frame];
+}
 
 #pragma mark -- animation
+
+//if u want to add badge animation type, follow steps bellow:
+//1. go to definition of WBadgeAnimType and add new type
+//2. go to category of CAAnimation+WAnimation to add new animation interface
+//3. call that new interface here
 - (void)beginAnimation
 {
     if (self.aniType == WBadgeAnimTypeBreathe)
@@ -148,13 +181,20 @@ static char badgeFrameJey;
         [self.badge.layer addAnimation:[CAAnimation opacityForever_Animation:1.4]
                                 forKey:kBadgeBreatheAniKey];
     }
-    else if(self.aniType == WBadgeAnimTypeRotate)
+     else if (self.aniType == WBadgeAnimTypeShake)
     {
-        [self.badge.layer addAnimation:[CAAnimation rotation:2
-                                                   degree:2*M_PI
-                                                direction:WAxisY
-                                              repeatCount:MAXFLOAT]
-                                forKey:kBadgeRotateAniKey];
+        [self.badge.layer addAnimation:[CAAnimation shake_AnimationRepeatTimes:MAXFLOAT
+                                                                      durTimes:1
+                                                                        forObj:self.badge.layer]
+                                forKey:kBadgeShakeAniKey];
+    }
+    else if (self.aniType == WBadgeAnimTypeScale)
+    {
+        [self.badge.layer addAnimation:[CAAnimation scaleFrom:1.4
+                                                      toScale:0.6
+                                                     durTimes:1
+                                                          rep:MAXFLOAT]
+                                forKey:kBadgeScaleAniKey];
     }
 }
 

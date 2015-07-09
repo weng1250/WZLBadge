@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 #pragma mark -- types definition
 
 typedef NS_ENUM(NSUInteger, WBadgeStyle)
@@ -21,7 +20,9 @@ typedef NS_ENUM(NSUInteger, WBadgeStyle)
 typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 {
     WBadgeAnimTypeNone = 0,         /* without animation, badge stays still */
-    WBadgeAnimTypeRotate,           /* rotate effect */
+    //WBadgeAnimTypeRotate,           /* rotate effect */
+    WBadgeAnimTypeScale,
+    WBadgeAnimTypeShake,            /* shake around top anchor point */
     WBadgeAnimTypeBreathe           /* breathing light effect, which makes badge more apparent */
 };
 

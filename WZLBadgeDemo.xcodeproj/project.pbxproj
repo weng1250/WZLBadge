@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19784AF11B4BC59C00FEA91C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19784AF01B4BC59C00FEA91C /* Default-568h@2x.png */; };
 		19C18C461B3AAEBA00BD63D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C451B3AAEBA00BD63D2 /* main.m */; };
 		19C18C491B3AAEBA00BD63D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C481B3AAEBA00BD63D2 /* AppDelegate.m */; };
 		19C18C4C1B3AAEBA00BD63D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C4B1B3AAEBA00BD63D2 /* ViewController.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19784AF01B4BC59C00FEA91C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		19C18C401B3AAEBA00BD63D2 /* WZLBadgeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WZLBadgeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C18C441B3AAEBA00BD63D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19C18C451B3AAEBA00BD63D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		19C18C431B3AAEBA00BD63D2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				19784AF01B4BC59C00FEA91C /* Default-568h@2x.png */,
 				19C18C441B3AAEBA00BD63D2 /* Info.plist */,
 				19C18C451B3AAEBA00BD63D2 /* main.m */,
 			);
@@ -236,6 +239,7 @@
 				19C18C4F1B3AAEBA00BD63D2 /* Main.storyboard in Resources */,
 				19C18C541B3AAEBA00BD63D2 /* LaunchScreen.xib in Resources */,
 				19C18C7B1B42496700BD63D2 /* logo@2x.jpg in Resources */,
+				19784AF11B4BC59C00FEA91C /* Default-568h@2x.png in Resources */,
 				19C18C511B3AAEBA00BD63D2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +393,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87d35d55-5d56-45c5-831c-17634179a8de";
+				PROVISIONING_PROFILE = "b6c11eaf-76fa-4d59-bfcd-5b020ef329ff";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -401,7 +406,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87d35d55-5d56-45c5-831c-17634179a8de";
+				PROVISIONING_PROFILE = "b6c11eaf-76fa-4d59-bfcd-5b020ef329ff";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
