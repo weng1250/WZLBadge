@@ -84,6 +84,9 @@ Do you have any questions or idea? My email is:
  
 > http://www.cnblogs.com/wengzilin/
 
+如果你在天朝，可以查看中文博客地址：
+http://www.cnblogs.com/wengzilin/p/4633937.html
+
 ----------
 NOTE
 --------------------
