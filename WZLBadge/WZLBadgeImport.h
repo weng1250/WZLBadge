@@ -1,0 +1,17 @@
+//
+//  WZLBadgeImport.h
+//  WZLBadgeDemo
+//
+//  Created by zilin_weng on 15/8/10.
+//  Copyright (c) 2015年 Weng-Zilin. All rights reserved.
+//
+//  Only import this header file for your project is enough.
+
+
+#ifndef WZLBadgeDemo_WZLBadgeImport_h
+#define WZLBadgeDemo_WZLBadgeImport_h
+
+#import "UIView+WZLBadge.h"
+#import "UIBarButtonItem+WZLBadge.h"
+
+#endif

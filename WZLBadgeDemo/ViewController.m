@@ -45,10 +45,12 @@
     [self.view addSubview:self.tableView];
     
     //configure navi item
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(onLeftBarItemClicked:)];
+//    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"]];
+//    imgView.frame = CGRectMake(0, 0, 24, 24);
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:imgView];
+//    self.navigationItem.leftBarButtonItem = leftItem;
+//    [imgView showBadge];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onLeftBarItemClicked:)];
     self.navigationItem.leftBarButtonItem = leftItem;
 }
 

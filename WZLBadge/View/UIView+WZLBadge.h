@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
     WBadgeAnimTypeNone = 0,         /* without animation, badge stays still */
     //WBadgeAnimTypeRotate,           /* rotate effect */
     WBadgeAnimTypeScale,
-    WBadgeAnimTypeShake,            /* shake around top anchor point */
+    WBadgeAnimTypeShake,            /* shaking effect */
     WBadgeAnimTypeBreathe           /* breathing light effect, which makes badge more apparent */
 };
 
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 @property (nonatomic, assign) CGRect badgeFrame;        /* we have optimized the badge frame. 
                                                          This property is adviced not to set manually */
 @property (nonatomic, assign) WBadgeAnimType aniType;   /* NOTE that this is not animation type of badge's
-                                                            appearing nor  hidding*/
+                                                            appearing, nor  hidding*/
 
 /**
  *  show badge with red dot style and WBadgeAnimTypeNone by default.
