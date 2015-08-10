@@ -21,16 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGFloat y = NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0 ? 20 : 0;
-    CGRect frame = CGRectMake(0, y, self.view.width, self.view.height);
-    self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.userInteractionEnabled = YES;
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:self.tableView];
-    
-    self.dataItems = [[NSMutableArray alloc] initWithCapacity:0];
+    self.title = @"WZLBadge Examples";
+    [self setup];
     [self initItems];
 }
 
@@ -40,6 +32,26 @@
 }
 
 #pragma mark -- private methods
+- (void)setup
+{
+    //configure table view
+    CGFloat y = NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0 ? 64 : 44;
+    CGRect frame = CGRectMake(0, y, self.view.width, self.view.height);
+    self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.userInteractionEnabled = YES;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.tableView];
+    
+    //configure navi item
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(onLeftBarItemClicked:)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+}
+
 - (void)configCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section;
@@ -57,9 +69,19 @@
     cell.detailTextLabel.text = subtitles[row];
 }
 
+#pragma mark -- handle actions
+- (void)onLeftBarItemClicked:(UIBarButtonItem *)sender
+{
+    
+}
+
+
 #pragma mark -- delegate of tableview
+
 - (void)initItems
 {
+    self.dataItems = [[NSMutableArray alloc] initWithCapacity:0];
+    
     NSMutableArray *staticBadges = [NSMutableArray array];
     NSMutableArray *dynamicBadges = [NSMutableArray array];
     
@@ -69,7 +91,7 @@
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
-        [btn showBadgeWithStyle:styles[i] value:99 animationType:WBadgeAnimTypeNone];
+        [btn showBadgeWithStyle:styles[i] value:99 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
         [staticBadges addObject:btn];
     }
     
