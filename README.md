@@ -88,7 +88,6 @@ WZLBadge provides easy way to customize its style.:
 
 	//...
 
-**NOTE: **
 ----------
 CONTACT
 --------------------
