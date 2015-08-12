@@ -1,7 +1,7 @@
 
 OVERVIEW
 ===================
-WZLBadge is a tool to add or clear badge for **any UIViews**, which is written in Objective-C, **supporting iOS5 ~ iOS8**, supporting portrait and landscape device orientation.
+WZLBadge is a tool to add or clear badge for **any UIViews**, which is written in Objective-C, **supporting iOS5 ~ iOS8**, supporting **portrait and landscape device orientation**.
 
 > The code is implemented by the way of category for UIView, thus, 
 it is **very easy to use**.
@@ -22,9 +22,9 @@ Three animation types are supported:
 
 Here are examples for WZLBadge:
 
-![](http://chuantu.biz/t2/10/1436431134x-1376436589.gif)
+![](http://chuantu.biz/t2/11/1439361693x-1376436589.gif)
 
-![](http://chuantu.biz/t2/10/1436432051x-1376436545.gif)
+![](http://chuantu.biz/t2/11/1439361809x-1376436545.gif)
 
 ----------
 
@@ -32,7 +32,7 @@ Here are examples for WZLBadge:
 INSTALLTATION
 -------------
 Drag the 
-> UIView+WZLBadge
+> WZLBadge
 
  folder into your project.
 
@@ -43,7 +43,7 @@ REQUIREMENTS
 
  - Xcode 6
  - iOS5 or above
- - ARC
+ - ARC (or MRC, but project setting is necessary)
 
 ----------
 
@@ -52,7 +52,7 @@ USAGE
 -------------
 
  1. Add the following import to the top of the file:
-> import "UIView+WZLBadge.h"
+> import "WZLBadgeImport.h"
 
  2. Use the following to display badge easily:
 
@@ -66,13 +66,29 @@ or simply call interface:[- showBadge]
 
 > [someView clearBadge];
 
+
 ----------
 
 
 BADGE CUSTOMIZATION
 --------------------
-Feel free to customize badge size, position, animation style or anything else in file `UIView+WZLBadge.h`
+Feel free to customize badge size, position, animation style or anything else.
 
+WZLBadge provides easy way to customize its style.:
+(**NOTE: these properties should be called before - [showBadge] method**)
+
+    //set background color. red color by default
+    view.badgeBgColor = [UIColor purpleColor];
+    
+    //set badge position. right-top corner of view by default
+    view.badgeCenterOffset = CGPointMake(-8, 0);
+
+	//set badge foreground color. white color by default
+	view.badgeTextColor = [UIColor whiteColor];
+
+	//...
+
+**NOTE: **
 ----------
 CONTACT
 --------------------
@@ -93,6 +109,22 @@ NOTE
 This project will be update continually. Therefore, **fork** or **star** would be suggested.
 
 I wish it to be an ultimat solution for UIView badge in iOS.
+
+
+----------
+CHANGE LOG
+--------------------
+V1.1  2015.08.12
+
+ 1. UIBarButtonItem badge is supported. UIBarButtonItem is kind of NSObject and its displayed view is invisiable. This version makes usage of UIBarButtonItem badge as to UIView.
+ 2. Slight adjustment for code structure to fit future extension.
+ 3. Other code optimization.
+
+
+
+V1.0  at 2015.06.16
+Base functions are completed, which is able to meet most of requirements.
+
 
 ----------
 LICENSE
