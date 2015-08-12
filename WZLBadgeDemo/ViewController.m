@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "UIView+WZLBadge.h"
 #import "UIView+Frame.h"
+#import "WZLBadgeImport.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -44,14 +44,21 @@
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.tableView];
     
+    [self setupNaviBarItems];
+}
+
+- (void)setupNaviBarItems
+{
     //configure navi item
-//    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"]];
-//    imgView.frame = CGRectMake(0, 0, 24, 24);
-//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:imgView];
-//    self.navigationItem.leftBarButtonItem = leftItem;
-//    [imgView showBadge];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onLeftBarItemClicked:)];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(onBarItemClicked:)];
     self.navigationItem.leftBarButtonItem = leftItem;
+    
+    //show example of customize badge`s centerOffset property
+    leftItem.badgeCenterOffset = CGPointMake(-8, 0);
+    [leftItem showBadge];
 }
 
 - (void)configCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath
@@ -72,9 +79,9 @@
 }
 
 #pragma mark -- handle actions
-- (void)onLeftBarItemClicked:(UIBarButtonItem *)sender
+- (void)onBarItemClicked:(UIBarButtonItem *)sender
 {
-    
+    [sender clearBadge];
 }
 
 
@@ -93,6 +100,13 @@
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
+        if (i == 1) {
+            btn.badgeBgColor = [UIColor purpleColor];
+            btn.badgeCenterOffset = CGPointMake(-btn.width, 0);
+        }
+        if (i == 2) {
+            btn.badgeBgColor = [UIColor blueColor];
+        }
         [btn showBadgeWithStyle:styles[i] value:99 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
         [staticBadges addObject:btn];
     }

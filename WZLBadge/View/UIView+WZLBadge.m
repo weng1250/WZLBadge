@@ -11,18 +11,6 @@
 #import "UIView+Frame.h"
 #import "CAAnimation+WAnimation.h"
 
-//key for associative methods during runtime
-static char badgeLabelKey;
-static char badgeBgColorKey;
-static char badgeTextColorKey;
-static char badgeAniTypeKey;
-static char badgeFrameJey;
-
-#define kBadgeBreatheAniKey     @"breathe"
-#define kBadgeRotateAniKey      @"rotate"
-#define kBadgeShakeAniKey       @"shake"
-#define kBadgeScaleAniKey       @"scale"
-
 @implementation UIView (WZLBadge)
 
 #pragma mark -- public methods
@@ -94,7 +82,7 @@ static char badgeFrameJey;
         self.badge.tag = WBadgeStyleNew;
         self.badge.width = 20;
         self.badge.height = 13;
-        self.badge.center = CGPointMake(self.width, 0);
+        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.font = [UIFont boldSystemFontOfSize:9];
         self.badge.layer.cornerRadius = self.badge.height / 3;
     }
@@ -123,7 +111,7 @@ static char badgeFrameJey;
             self.badge.width = self.badge.height;
         }
         
-        self.badge.center = CGPointMake(self.width, 0);
+        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.font = [UIFont boldSystemFontOfSize:9];
         self.badge.layer.cornerRadius = self.badge.height / 2;
     }
@@ -139,12 +127,13 @@ static char badgeFrameJey;
     if (self.badgeTextColor == nil) {
         self.badgeTextColor = [UIColor whiteColor];
     }
+    
     if (nil == self.badge) {
         CGFloat redotWidth = 8;
         CGRect frm = CGRectMake(self.width, -redotWidth, redotWidth, redotWidth);
         self.badge = [[UILabel alloc] initWithFrame:frm];
         self.badge.textAlignment = NSTextAlignmentCenter;
-        self.badge.center = CGPointMake(self.width, 0);
+        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.backgroundColor = self.badgeBgColor;
         self.badge.textColor = self.badgeTextColor;
         self.badge.text = @"";
@@ -249,12 +238,12 @@ static char badgeFrameJey;
 
 - (CGRect)badgeFrame
 {
-    id obj = objc_getAssociatedObject(self, &badgeFrameJey);
-    if (obj != nil && [obj isKindOfClass:[NSArray class]] && [obj count] == 4 ) {
-        CGFloat x = [obj[0] floatValue];
-        CGFloat y = [obj[1] floatValue];
-        CGFloat width = [obj[2] floatValue];
-        CGFloat height = [obj[3] floatValue];
+    id obj = objc_getAssociatedObject(self, &badgeFrameKey);
+    if (obj != nil && [obj isKindOfClass:[NSDictionary class]] && [obj count] == 4) {
+        CGFloat x = [obj[@"x"] floatValue];
+        CGFloat y = [obj[@"y"] floatValue];
+        CGFloat width = [obj[@"width"] floatValue];
+        CGFloat height = [obj[@"height"] floatValue];
         return  CGRectMake(x, y, width, height);
     } else
         return CGRectZero;
@@ -262,9 +251,26 @@ static char badgeFrameJey;
 
 - (void)setBadgeFrame:(CGRect)badgeFrame
 {
-    
+    NSDictionary *frameInfo = @{@"x" : @(badgeFrame.origin.x), @"y" : @(badgeFrame.origin.y),
+                                @"width" : @(badgeFrame.size.width), @"height" : @(badgeFrame.size.height)};
+    objc_setAssociatedObject(self, &badgeFrameKey, frameInfo, OBJC_ASSOCIATION_RETAIN);
 }
 
+- (CGPoint)badgeCenterOffset
+{
+    id obj = objc_getAssociatedObject(self, &badgeCenterOffsetKey);
+    if (obj != nil && [obj isKindOfClass:[NSDictionary class]] && [obj count] == 2) {
+        CGFloat x = [obj[@"x"] floatValue];
+        CGFloat y = [obj[@"y"] floatValue];
+        return CGPointMake(x, y);
+    } else
+        return CGPointZero;
+}
 
+- (void)setBadgeCenterOffset:(CGPoint)badgeCenterOff
+{
+    NSDictionary *cenerInfo = @{@"x" : @(badgeCenterOff.x), @"y" : @(badgeCenterOff.y)};
+    objc_setAssociatedObject(self, &badgeCenterOffsetKey, cenerInfo, OBJC_ASSOCIATION_RETAIN);
+}
 
 @end
