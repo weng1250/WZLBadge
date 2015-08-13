@@ -7,7 +7,8 @@ Pod::Spec.new do |s|
                        DESC
   s.homepage         = 'https://github.com/weng1250/WZLBadge'
   s.license          = { :type => 'None', :file => 'LICENSE' }
-  s.source           = { :git => 'https://github.com/weng1250/WZLBadge.git', :tag => '0.1.0' }
+  s.author           = { '' => '' }
+  s.source           = { :git => 'https://github.com/weng1250/WZLBadge.git', :tag => s.version }
   s.platform         = :ios, '5.0'
   s.requires_arc     = true
 	
