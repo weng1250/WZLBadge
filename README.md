@@ -1,5 +1,5 @@
 
-Realize multi-style badge IN ONE LINE(iOS)
+BADGE IN ONE LINE(iOS)
 ===================
 OVERVIEW
 ===================
