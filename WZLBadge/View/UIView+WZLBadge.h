@@ -41,9 +41,8 @@
         this value will be ignored. In this case, any value will be ok.)
 *   @param aniType
  */
-- (void)showBadgeWithStyle:(WBadgeStyle)style
-                     value:(NSInteger)value
-             animationType:(WBadgeAnimType)aniType;
+- (void)showBadgeValue:(NSString *)value
+         animationType:(WBadgeAnimType)aniType;
 
 
 /**

@@ -19,7 +19,7 @@
  */
 - (void)showBadge
 {
-    [self showBadgeWithStyle:WBadgeStyleRedDot value:0 animationType:WBadgeAnimTypeNone];
+    [self showBadgeValue:nil animationType:WBadgeAnimTypeNone];
 }
 
 /**
@@ -29,23 +29,12 @@
  *  @param value (if 'style' is WBadgeStyleRedDot or WBadgeStyleNew, 
  *                this value will be ignored. In this case, any value will be ok.)
  */
-- (void)showBadgeWithStyle:(WBadgeStyle)style value:(NSInteger)value animationType:(WBadgeAnimType)aniType
+- (void)showBadgeValue:(NSString *)value animationType:(WBadgeAnimType)aniType
 {
+    [self showBadgeWithValue:value];
+    
     self.aniType = aniType;
-    switch (style) {
-        case WBadgeStyleRedDot:
-            [self showRedDotBadge];
-            break;
-        case WBadgeStyleNumber:
-            [self showNumberBadgeWithValue:value];
-            break;
-        case WBadgeStyleNew:
-            [self showNewBadge];
-            break;
-        default:
-            break;
-    }
-    if (aniType != WBadgeAnimTypeNone) {
+    if(self.aniType != WBadgeAnimTypeNone) {
         [self beginAnimation];
     }
 }
@@ -61,49 +50,13 @@
 
 
 #pragma mark -- private methods
-- (void)showRedDotBadge
+- (void)showBadgeWithValue:(NSString *)value
 {
     [self badgeInit];
-    //if badge has been displayed and, in addition, is was not red dot style, we must update UI.
-    if (self.badge.tag != WBadgeStyleRedDot) {
-        self.badge.text = @"";
-        self.badge.tag = WBadgeStyleRedDot;
-        self.badge.layer.cornerRadius = self.badge.width / 2;
-    }
-    self.badge.hidden = NO;
-}
+    
+    self.badge.text = value;
 
-- (void)showNewBadge
-{
-    [self badgeInit];
-    //if badge has been displayed and, in addition, is was not red dot style, we must update UI.
-    if (self.badge.tag != WBadgeStyleNew) {
-        self.badge.text = @"new";
-        self.badge.tag = WBadgeStyleNew;
-        self.badge.width = 20;
-        self.badge.height = 13;
-        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
-        self.badge.font = [UIFont boldSystemFontOfSize:9];
-        self.badge.layer.cornerRadius = self.badge.height / 3;
-    }
-    self.badge.hidden = NO;
-}
-
-- (void)showNumberBadgeWithValue:(NSInteger)value
-{
-    if (value < 0) {
-        return;
-    }
-    [self badgeInit];
-    if (self.badge.tag != WBadgeStyleNumber) {
-        self.badge.tag = WBadgeStyleNumber;
-        
-        //maximun value allowed is 99. When the value is greater than 99, "99+" will be shown.
-        if (value >=100) {
-            self.badge.text = @"99+";
-        } else {
-            self.badge.text = [NSString stringWithFormat:@"%@", @(value)];
-        }
+    if (value && ![value isEqualToString:@""]) {
         [self adjustLabelWidth:self.badge];
         self.badge.width = self.badge.width - 4;
         self.badge.height = 12;
@@ -113,8 +66,9 @@
         
         self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.font = [UIFont boldSystemFontOfSize:9];
-        self.badge.layer.cornerRadius = self.badge.height / 2;
     }
+    
+    self.badge.layer.cornerRadius = self.badge.height / 2;
     self.badge.hidden = NO;
 }
 
@@ -136,8 +90,6 @@
         self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.backgroundColor = self.badgeBgColor;
         self.badge.textColor = self.badgeTextColor;
-        self.badge.text = @"";
-        self.badge.tag = WBadgeStyleRedDot;//red dot by default
         self.badge.layer.cornerRadius = self.badge.width / 2;
         self.badge.layer.masksToBounds = YES;//very important
         [self addSubview:self.badge];

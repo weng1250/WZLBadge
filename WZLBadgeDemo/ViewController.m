@@ -94,7 +94,7 @@
     NSMutableArray *staticBadges = [NSMutableArray array];
     NSMutableArray *dynamicBadges = [NSMutableArray array];
     
-    WBadgeStyle styles[] = {WBadgeStyleRedDot, WBadgeStyleNew, WBadgeStyleNumber};
+    NSString *values[] = {@"", @"new", @"99"};
     for (NSInteger i = 0; i < 3; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
@@ -107,7 +107,7 @@
         if (i == 2) {
             btn.badgeBgColor = [UIColor blueColor];
         }
-        [btn showBadgeWithStyle:styles[i] value:99 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
+        [btn showBadgeValue:values[i] animationType:WBadgeAnimTypeNone];
         [staticBadges addObject:btn];
     }
     
@@ -117,7 +117,7 @@
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
-        [btn showBadgeWithStyle:styles[i] value:99 animationType:animations[i]];
+        [btn showBadgeValue:values[i] animationType:animations[i]];
         [dynamicBadges addObject:btn];
     }
     [self.dataItems addObject:staticBadges];

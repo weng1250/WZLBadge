@@ -28,13 +28,6 @@ static char badgeAniTypeKey;
 static char badgeFrameKey;
 static char badgeCenterOffsetKey;
 
-typedef NS_ENUM(NSUInteger, WBadgeStyle)
-{
-    WBadgeStyleRedDot = 0,          /* red dot style */
-    WBadgeStyleNumber,              /* badge with number */
-    WBadgeStyleNew                  /* badge with a fixed text "new" */
-};
-
 typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 {
     WBadgeAnimTypeNone = 0,         /* without animation, badge stays still */
@@ -71,15 +64,11 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 /**
  *  showBadge
  *
- *  @param style WBadgeStyle type
- *  @param value (if 'style' is WBadgeStyleRedDot or WBadgeStyleNew,
-            this value will be ignored. In this case, any value will be ok.)
- *   @param aniType
+ *  @param value String value, default is `nil`.
+ *  @param aniType
  */
-- (void)showBadgeWithStyle:(WBadgeStyle)style
-                     value:(NSInteger)value
-             animationType:(WBadgeAnimType)aniType;
-
+- (void)showBadgeValue:(NSString *)value
+         animationType:(WBadgeAnimType)aniType;
 
 /**
  *  clear badge
