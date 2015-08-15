@@ -19,6 +19,7 @@
 #define kBadgeRotateAniKey      @"rotate"
 #define kBadgeShakeAniKey       @"shake"
 #define kBadgeScaleAniKey       @"scale"
+#define kBadgeBounceAniKey      @"bounce"
 
 //key for associative methods during runtime
 static char badgeLabelKey;
@@ -40,6 +41,7 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
     WBadgeAnimTypeNone = 0,         /* without animation, badge stays still */
     WBadgeAnimTypeScale,            /* scale effect */
     WBadgeAnimTypeShake,            /* shaking effect */
+    WBadgeAnimTypeBounce,           /* bouncing effect */
     WBadgeAnimTypeBreathe           /* breathing light effect, which makes badge more attractive */
 };
 

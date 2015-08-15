@@ -74,7 +74,7 @@
         [cell addSubview:view];
     }
     //configure cell title
-    NSArray *subtitles = @[@"red dot style:", @"new style:", @"number style:"];
+    NSArray *subtitles = @[@"red dot style:", @"new style:", @"number style:", @"number style:"];
     cell.detailTextLabel.text = subtitles[row];
 }
 
@@ -94,8 +94,8 @@
     NSMutableArray *staticBadges = [NSMutableArray array];
     NSMutableArray *dynamicBadges = [NSMutableArray array];
     
-    WBadgeStyle styles[] = {WBadgeStyleRedDot, WBadgeStyleNew, WBadgeStyleNumber};
-    for (NSInteger i = 0; i < 3; i++) {
+    WBadgeStyle styles[] = {WBadgeStyleRedDot, WBadgeStyleNew, WBadgeStyleNumber, WBadgeStyleNumber};
+    for (NSInteger i = 0; i < sizeof(styles) / sizeof(styles[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
@@ -111,8 +111,8 @@
         [staticBadges addObject:btn];
     }
     
-    WBadgeAnimType animations[] = {WBadgeAnimTypeScale, WBadgeAnimTypeBreathe, WBadgeAnimTypeShake};
-    for (NSInteger i = 0; i < 3; i++) {
+    WBadgeAnimType animations[] = {WBadgeAnimTypeScale, WBadgeAnimTypeBreathe, WBadgeAnimTypeShake, WBadgeAnimTypeBounce};
+    for (NSInteger i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];

@@ -137,4 +137,37 @@
     return anim;
 }
 
+/**
+ *  bounce
+ *
+ *  @param repeatTimes time
+ *  @param time        duration
+ *  @param obj         always be CALayer
+ *  @return aniamtion obj
+ */
++(CAKeyframeAnimation *)bounce_AnimationRepeatTimes:(float)repeatTimes durTimes:(float)time forObj:(id)obj
+{
+    NSAssert([obj isKindOfClass:[CALayer class]] , @"invalid target");
+    CGPoint originPos = CGPointZero;
+    CGSize originSize = CGSizeZero;
+    if ([obj isKindOfClass:[CALayer class]]) {
+        originPos = [(CALayer *)obj position];
+        originSize = [(CALayer *)obj bounds].size;
+    }
+    CGFloat hOffset = originSize.height / 4;
+    CAKeyframeAnimation* anim=[CAKeyframeAnimation animation];
+    anim.keyPath=@"position";
+    anim.values=@[
+                  [NSValue valueWithCGPoint:CGPointMake(originPos.x, originPos.y)],
+                  [NSValue valueWithCGPoint:CGPointMake(originPos.x, originPos.y-hOffset)],
+                  [NSValue valueWithCGPoint:CGPointMake(originPos.x, originPos.y)],
+                  [NSValue valueWithCGPoint:CGPointMake(originPos.x, originPos.y+hOffset)],
+                  [NSValue valueWithCGPoint:CGPointMake(originPos.x, originPos.y)]
+                  ];
+    anim.repeatCount=repeatTimes;
+    anim.duration=time;
+    anim.fillMode = kCAFillModeForwards;
+    return anim;
+}
+
 @end

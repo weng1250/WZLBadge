@@ -75,4 +75,14 @@ typedef NS_ENUM(NSUInteger, WAxis)
  */
 +(CAKeyframeAnimation *)shake_AnimationRepeatTimes:(float)repeatTimes durTimes:(float)time forObj:(id)obj;
 
+/**
+ *  bounce
+ *
+ *  @param repeatTimes time
+ *  @param time        duration
+ *  @param obj         always be CALayer at present
+ *  @return aniamtion obj
+ */
++(CAKeyframeAnimation *)bounce_AnimationRepeatTimes:(float)repeatTimes durTimes:(float)time forObj:(id)obj;
+
 @end
