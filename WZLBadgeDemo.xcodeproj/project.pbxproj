@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		19685FF71B7898E600AD10C2 /* nav_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19685FF61B7898E600AD10C2 /* nav_list@2x.png */; };
-		196860001B78A5E400AD10C2 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19685FFE1B78A5C900AD10C2 /* Reveal.framework */; };
 		196860021B78A6F500AD10C2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196860011B78A6F500AD10C2 /* libz.dylib */; };
 		1968600F1B78AB4A00AD10C2 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968600C1B78AB4A00AD10C2 /* UIView+WZLBadge.m */; };
 		196860161B78AD1A00AD10C2 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 196860151B78AD1A00AD10C2 /* UIBarButtonItem+WZLBadge.m */; };
@@ -72,7 +71,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				196860021B78A6F500AD10C2 /* libz.dylib in Frameworks */,
-				196860001B78A5E400AD10C2 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,20 +433,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Reveal1.5破解.app/Contents/SharedSupport/iOS-Libraries",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = WZLBadgeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Reveal,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b6c11eaf-76fa-4d59-bfcd-5b020ef329ff";
+				PROVISIONING_PROFILE = "376d53ca-eb09-41f0-94a0-726394f7eb7b";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -457,20 +448,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Reveal1.5破解.app/Contents/SharedSupport/iOS-Libraries",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = WZLBadgeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Reveal,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b6c11eaf-76fa-4d59-bfcd-5b020ef329ff";
+				PROVISIONING_PROFILE = "376d53ca-eb09-41f0-94a0-726394f7eb7b";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
