@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'WZLBadge'
   s.version          = '1.1'
-  s.summary          = 'An easy tool to show different styles of UIView objects.'
+  s.summary          = 'An one-line tool to show  styles of badge for UIView'
   s.description      = <<-DESC
                        An easy tool to show different styles of UIView objects without the need for subclassing.
                        DESC
