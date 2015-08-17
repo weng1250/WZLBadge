@@ -113,6 +113,14 @@ I wish it to be an ultimat solution for UIView badge in iOS.
 
 
 ----------
+CONTRIBUTE
+--------------------
+ - Zilin Weng(翁子林) https://github.com/weng1250
+ - jfuellert https://github.com/jfuellert
+
+Feel free to open an issue or pull request, if you need help or there is a bug.
+
+----------
 CHANGE LOG
 --------------------
 V1.1  2015.08.12
@@ -124,6 +132,7 @@ V1.1  2015.08.12
 
 
 V1.0  at 2015.06.16
+
 Base functions are completed, which is able to meet most of requirements.
 
 
