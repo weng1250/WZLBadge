@@ -116,6 +116,9 @@
         self.badge.layer.cornerRadius = self.badge.height / 2;
     }
     self.badge.hidden = NO;
+    if (value == 0) {
+        self.badge.hidden = YES;
+    }
 }
 
 //lazy loading
