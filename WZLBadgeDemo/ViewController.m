@@ -117,7 +117,7 @@
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
-        [btn showBadgeWithStyle:styles[i] value:99 animationType:animations[i]];
+        [btn showBadgeWithStyle:styles[i] value:100 animationType:animations[i]];
         [dynamicBadges addObject:btn];
     }
     [self.dataItems addObject:staticBadges];
