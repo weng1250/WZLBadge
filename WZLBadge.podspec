@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.platform         = :ios, '5.0'
   s.requires_arc     = true
 	
-  s.source_files     = 'WZLBadge/**/*.{h,m}'
+  s.source_files     = 'WZLBadge/BarButtonItem/*.{h,m}', 'WZLBadge/CategorySupport/*.{h,m}', 'WZLBadge/Protocol/*.{h,m}', 'WZLBadge/View/*.{h,m}', 'WZLBadge/WZLBadgeImport.h' 
   s.public_header_files = 'WZLBadge/**/*.{h}'
 
   s.frameworks          = 'UIKit'
