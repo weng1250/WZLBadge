@@ -33,10 +33,15 @@ Here are examples for WZLBadge:
 
 INSTALLTATION
 -------------
+Method1：
 Drag the 
 > WZLBadge
 
  folder into your project.
+
+Method2:
+Use CocoaPods to install automaticlly:
+pod 'WZLBadge', '~> 1.1.2’
 
 ----------
 
