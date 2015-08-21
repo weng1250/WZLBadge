@@ -70,6 +70,9 @@
     
     self.badge.layer.cornerRadius = self.badge.height / 2;
     self.badge.hidden = NO;
+    if (value == 0) {
+        self.badge.hidden = YES;
+    }
 }
 
 //lazy loading
@@ -117,25 +120,33 @@
 //3. call that new interface here
 - (void)beginAnimation
 {
-    if (self.aniType == WBadgeAnimTypeBreathe)
-    {
-        [self.badge.layer addAnimation:[CAAnimation opacityForever_Animation:1.4]
-                                forKey:kBadgeBreatheAniKey];
-    }
-     else if (self.aniType == WBadgeAnimTypeShake)
-    {
-        [self.badge.layer addAnimation:[CAAnimation shake_AnimationRepeatTimes:MAXFLOAT
-                                                                      durTimes:1
-                                                                        forObj:self.badge.layer]
-                                forKey:kBadgeShakeAniKey];
-    }
-    else if (self.aniType == WBadgeAnimTypeScale)
-    {
-        [self.badge.layer addAnimation:[CAAnimation scaleFrom:1.4
-                                                      toScale:0.6
-                                                     durTimes:1
-                                                          rep:MAXFLOAT]
-                                forKey:kBadgeScaleAniKey];
+    switch(self.aniType) {
+        case WBadgeAnimTypeBreathe:
+            [self.badge.layer addAnimation:[CAAnimation opacityForever_Animation:1.4]
+                                    forKey:kBadgeBreatheAniKey];
+            break;
+        case WBadgeAnimTypeShake:
+            [self.badge.layer addAnimation:[CAAnimation shake_AnimationRepeatTimes:CGFLOAT_MAX
+                                                                          durTimes:1
+                                                                            forObj:self.badge.layer]
+                                    forKey:kBadgeShakeAniKey];
+            break;
+        case WBadgeAnimTypeScale:
+            [self.badge.layer addAnimation:[CAAnimation scaleFrom:1.4
+                                                          toScale:0.6
+                                                         durTimes:1
+                                                              rep:MAXFLOAT]
+                                    forKey:kBadgeScaleAniKey];
+            break;
+        case WBadgeAnimTypeBounce:
+            [self.badge.layer addAnimation:[CAAnimation bounce_AnimationRepeatTimes:CGFLOAT_MAX
+                                                                          durTimes:1
+                                                                            forObj:self.badge.layer]
+                                    forKey:kBadgeBounceAniKey];
+            break;
+        case WBadgeAnimTypeNone:
+        default:
+            break;
     }
 }
 

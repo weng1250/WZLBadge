@@ -36,7 +36,7 @@
 {
     //configure table view
     CGFloat y = NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0 ? 64 : 44;
-    CGRect frame = CGRectMake(0, y, self.view.width, self.view.height);
+    CGRect frame = CGRectMake(0, y, self.view.width, self.view.height - y);
     self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -74,7 +74,7 @@
         [cell addSubview:view];
     }
     //configure cell title
-    NSArray *subtitles = @[@"red dot style:", @"new style:", @"number style:"];
+    NSArray *subtitles = @[@"red dot style:", @"new style:", @"number style:", @"number style:"];
     cell.detailTextLabel.text = subtitles[row];
 }
 
@@ -94,7 +94,7 @@
     NSMutableArray *staticBadges = [NSMutableArray array];
     NSMutableArray *dynamicBadges = [NSMutableArray array];
     
-    NSString *values[] = {@"", @"new", @"99"};
+    NSString *values[] = {@"", @"new", @"99", @"99"};
     for (NSInteger i = 0; i < 3; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
@@ -111,13 +111,14 @@
         [staticBadges addObject:btn];
     }
     
-    WBadgeAnimType animations[] = {WBadgeAnimTypeScale, WBadgeAnimTypeBreathe, WBadgeAnimTypeShake};
-    for (NSInteger i = 0; i < 3; i++) {
+    WBadgeAnimType animations[] = {WBadgeAnimTypeScale, WBadgeAnimTypeBreathe, WBadgeAnimTypeShake, WBadgeAnimTypeBounce};
+    for (NSInteger i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
         [btn showBadgeValue:values[i] animationType:animations[i]];
+
         [dynamicBadges addObject:btn];
     }
     [self.dataItems addObject:staticBadges];
