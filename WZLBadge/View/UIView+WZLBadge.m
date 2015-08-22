@@ -8,7 +8,6 @@
 
 #import "UIView+WZLBadge.h"
 #import <objc/runtime.h>
-#import "UIView+Frame.h"
 #import "CAAnimation+WAnimation.h"
 
 @implementation UIView (WZLBadge)
@@ -68,7 +67,7 @@
     if (self.badge.tag != WBadgeStyleRedDot) {
         self.badge.text = @"";
         self.badge.tag = WBadgeStyleRedDot;
-        self.badge.layer.cornerRadius = self.badge.width / 2;
+        self.badge.layer.cornerRadius = CGRectGetWidth(self.badge.frame) / 2;
     }
     self.badge.hidden = NO;
 }
@@ -80,11 +79,15 @@
     if (self.badge.tag != WBadgeStyleNew) {
         self.badge.text = @"new";
         self.badge.tag = WBadgeStyleNew;
-        self.badge.width = 20;
-        self.badge.height = 13;
-        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
+        
+        CGRect frame = self.badge.frame;
+        frame.size.width = 20;
+        frame.size.height = 13;
+        self.badge.frame = frame;
+        
+        self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.font = [UIFont boldSystemFontOfSize:9];
-        self.badge.layer.cornerRadius = self.badge.height / 3;
+        self.badge.layer.cornerRadius = CGRectGetHeight(self.badge.frame) / 3;
     }
     self.badge.hidden = NO;
 }
@@ -105,15 +108,18 @@
             self.badge.text = [NSString stringWithFormat:@"%@", @(value)];
         }
         [self adjustLabelWidth:self.badge];
-        self.badge.width = self.badge.width - 4;
-        self.badge.height = 12;
-        if (self.badge.width < self.badge.height) {
-            self.badge.width = self.badge.height;
-        }
         
-        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
+        CGRect frame = self.badge.frame;
+        frame.size.width -= 4;
+        frame.size.height = 12;
+        if(CGRectGetWidth(frame) < CGRectGetHeight(frame)) {
+            frame.size.width = CGRectGetHeight(frame);
+        }
+        self.badge.frame = frame;
+        
+        self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.font = [UIFont boldSystemFontOfSize:9];
-        self.badge.layer.cornerRadius = self.badge.height / 2;
+        self.badge.layer.cornerRadius = CGRectGetHeight(self.badge.frame) / 2;
     }
     self.badge.hidden = NO;
     if (value == 0) {
@@ -133,15 +139,15 @@
     
     if (nil == self.badge) {
         CGFloat redotWidth = 8;
-        CGRect frm = CGRectMake(self.width, -redotWidth, redotWidth, redotWidth);
+        CGRect frm = CGRectMake(CGRectGetWidth(self.frame), -redotWidth, redotWidth, redotWidth);
         self.badge = [[UILabel alloc] initWithFrame:frm];
         self.badge.textAlignment = NSTextAlignmentCenter;
-        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
+        self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.backgroundColor = self.badgeBgColor;
         self.badge.textColor = self.badgeTextColor;
         self.badge.text = @"";
         self.badge.tag = WBadgeStyleRedDot;//red dot by default
-        self.badge.layer.cornerRadius = self.badge.width / 2;
+        self.badge.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
         self.badge.layer.masksToBounds = YES;//very important
         [self addSubview:self.badge];
     }
