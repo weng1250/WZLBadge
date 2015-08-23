@@ -12,7 +12,6 @@
 		1968600F1B78AB4A00AD10C2 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968600C1B78AB4A00AD10C2 /* UIView+WZLBadge.m */; };
 		196860161B78AD1A00AD10C2 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 196860151B78AD1A00AD10C2 /* UIBarButtonItem+WZLBadge.m */; };
 		1968601F1B7AD02E00AD10C2 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968601C1B7AD02E00AD10C2 /* CAAnimation+WAnimation.m */; };
-		196860201B7AD02E00AD10C2 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968601E1B7AD02E00AD10C2 /* UIView+Frame.m */; };
 		19784AF11B4BC59C00FEA91C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19784AF01B4BC59C00FEA91C /* Default-568h@2x.png */; };
 		19C18C461B3AAEBA00BD63D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C451B3AAEBA00BD63D2 /* main.m */; };
 		19C18C491B3AAEBA00BD63D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C481B3AAEBA00BD63D2 /* AppDelegate.m */; };
@@ -20,6 +19,7 @@
 		19C18C511B3AAEBA00BD63D2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19C18C501B3AAEBA00BD63D2 /* Images.xcassets */; };
 		19C18C601B3AAEBA00BD63D2 /* WZLBadgeDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C18C5F1B3AAEBA00BD63D2 /* WZLBadgeDemoTests.m */; };
 		19C18C7B1B42496700BD63D2 /* logo@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19C18C7A1B42496700BD63D2 /* logo@2x.jpg */; };
+		76F0D8BA1B87F17000EE9C38 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D8B91B87F17000EE9C38 /* UIView+Frame.m */; };
 		A2BB80901B7BA5FA00373C78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C18C4D1B3AAEBA00BD63D2 /* Main.storyboard */; };
 		A2BB80911B7BA5FA00373C78 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C18C521B3AAEBA00BD63D2 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
@@ -45,8 +45,6 @@
 		196860151B78AD1A00AD10C2 /* UIBarButtonItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WZLBadge.m"; sourceTree = "<group>"; };
 		1968601B1B7AD02E00AD10C2 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
 		1968601C1B7AD02E00AD10C2 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
-		1968601D1B7AD02E00AD10C2 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		1968601E1B7AD02E00AD10C2 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		196860221B7AD96D00AD10C2 /* WZLBadgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeProtocol.h; sourceTree = "<group>"; };
 		19784AF01B4BC59C00FEA91C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		19C18C401B3AAEBA00BD63D2 /* WZLBadgeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WZLBadgeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +61,8 @@
 		19C18C5E1B3AAEBA00BD63D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19C18C5F1B3AAEBA00BD63D2 /* WZLBadgeDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZLBadgeDemoTests.m; sourceTree = "<group>"; };
 		19C18C7A1B42496700BD63D2 /* logo@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo@2x.jpg"; sourceTree = "<group>"; };
+		76F0D8B81B87F17000EE9C38 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		76F0D8B91B87F17000EE9C38 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +119,6 @@
 			children = (
 				1968601B1B7AD02E00AD10C2 /* CAAnimation+WAnimation.h */,
 				1968601C1B7AD02E00AD10C2 /* CAAnimation+WAnimation.m */,
-				1968601D1B7AD02E00AD10C2 /* UIView+Frame.h */,
-				1968601E1B7AD02E00AD10C2 /* UIView+Frame.m */,
 			);
 			path = CategorySupport;
 			sourceTree = "<group>";
@@ -154,17 +152,19 @@
 		19C18C421B3AAEBA00BD63D2 /* WZLBadgeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				196860031B78AB4A00AD10C2 /* WZLBadge */,
 				19C18C471B3AAEBA00BD63D2 /* AppDelegate.h */,
 				19C18C481B3AAEBA00BD63D2 /* AppDelegate.m */,
-				19C18C4A1B3AAEBA00BD63D2 /* ViewController.h */,
-				19C18C4B1B3AAEBA00BD63D2 /* ViewController.m */,
-				19C18C4D1B3AAEBA00BD63D2 /* Main.storyboard */,
 				19C18C501B3AAEBA00BD63D2 /* Images.xcassets */,
 				19C18C521B3AAEBA00BD63D2 /* LaunchScreen.xib */,
 				19C18C7A1B42496700BD63D2 /* logo@2x.jpg */,
+				19C18C4D1B3AAEBA00BD63D2 /* Main.storyboard */,
 				19685FF61B7898E600AD10C2 /* nav_list@2x.png */,
 				19C18C431B3AAEBA00BD63D2 /* Supporting Files */,
+				76F0D8B81B87F17000EE9C38 /* UIView+Frame.h */,
+				76F0D8B91B87F17000EE9C38 /* UIView+Frame.m */,
+				19C18C4A1B3AAEBA00BD63D2 /* ViewController.h */,
+				19C18C4B1B3AAEBA00BD63D2 /* ViewController.m */,
+				196860031B78AB4A00AD10C2 /* WZLBadge */,
 			);
 			path = WZLBadgeDemo;
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 				19C18C4C1B3AAEBA00BD63D2 /* ViewController.m in Sources */,
 				1968601F1B7AD02E00AD10C2 /* CAAnimation+WAnimation.m in Sources */,
 				19C18C491B3AAEBA00BD63D2 /* AppDelegate.m in Sources */,
-				196860201B7AD02E00AD10C2 /* UIView+Frame.m in Sources */,
+				76F0D8BA1B87F17000EE9C38 /* UIView+Frame.m in Sources */,
 				1968600F1B78AB4A00AD10C2 /* UIView+WZLBadge.m in Sources */,
 				19C18C461B3AAEBA00BD63D2 /* main.m in Sources */,
 				196860161B78AD1A00AD10C2 /* UIBarButtonItem+WZLBadge.m in Sources */,
