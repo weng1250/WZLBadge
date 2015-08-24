@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "WZLBadgeProtocol.h"
 
+//for WBadgeStyleNumber style badge, if badge value is above kWZLBadgeMaximumBadgeNumber,
+//"kWZLBadgeMaximumBadgeNumber+" will be printed.
+#define kWZLBadgeMaximumBadgeNumber                     99
 
 #pragma mark -- badge apis
 

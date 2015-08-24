@@ -107,7 +107,7 @@
         if (i == 2) {
             btn.badgeBgColor = [UIColor blueColor];
         }
-        [btn showBadgeWithStyle:styles[i] value:99 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
+        [btn showBadgeWithStyle:styles[i] value:100 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
         [staticBadges addObject:btn];
     }
     
@@ -155,7 +155,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIView *view = (UIView *)self.dataItems[indexPath.section][indexPath.row];
-    [view clearBadge];
+    //[view clearBadge];
+    static int i = 0;
+    [view showBadgeWithStyle:WBadgeStyleNumber value:i animationType:WBadgeAnimTypeNone];
+    i++;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

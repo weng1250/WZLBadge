@@ -98,33 +98,22 @@
         return;
     }
     [self badgeInit];
-    if (self.badge.tag != WBadgeStyleNumber) {
-        self.badge.tag = WBadgeStyleNumber;
-        
-        //maximun value allowed is 99. When the value is greater than 99, "99+" will be shown.
-        if (value >=100) {
-            self.badge.text = @"99+";
-        } else {
-            self.badge.text = [NSString stringWithFormat:@"%@", @(value)];
-        }
-        [self adjustLabelWidth:self.badge];
-        
-        CGRect frame = self.badge.frame;
-        frame.size.width -= 4;
-        frame.size.height = 12;
-        if(CGRectGetWidth(frame) < CGRectGetHeight(frame)) {
-            frame.size.width = CGRectGetHeight(frame);
-        }
-        self.badge.frame = frame;
-        
-        self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
-        self.badge.font = [UIFont boldSystemFontOfSize:9];
-        self.badge.layer.cornerRadius = CGRectGetHeight(self.badge.frame) / 2;
+    self.badge.hidden = (value == 0);
+    self.badge.tag = WBadgeStyleNumber;
+    self.badge.font = [UIFont boldSystemFontOfSize:9];
+    self.badge.text = (value >= kWZLBadgeMaximumBadgeNumber ?
+                       [NSString stringWithFormat:@"%@+", @(kWZLBadgeMaximumBadgeNumber)] :
+                       [NSString stringWithFormat:@"%@", @(value)]);
+    [self adjustLabelWidth:self.badge];
+    CGRect frame = self.badge.frame;
+    frame.size.width += 4;
+    frame.size.height = 12;
+    if(CGRectGetWidth(frame) < CGRectGetHeight(frame)) {
+        frame.size.width = CGRectGetHeight(frame);
     }
-    self.badge.hidden = NO;
-    if (value == 0) {
-        self.badge.hidden = YES;
-    }
+    self.badge.frame = frame;
+    self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
+    self.badge.layer.cornerRadius = CGRectGetHeight(self.badge.frame) / 2;
 }
 
 //lazy loading
@@ -147,8 +136,9 @@
         self.badge.textColor = self.badgeTextColor;
         self.badge.text = @"";
         self.badge.tag = WBadgeStyleRedDot;//red dot by default
-        self.badge.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
+        self.badge.layer.cornerRadius = CGRectGetWidth(self.badge.frame) / 2;
         self.badge.layer.masksToBounds = YES;//very important
+        self.badge.hidden = NO;
         [self addSubview:self.badge];
     }
 }
@@ -158,7 +148,7 @@
 {
     [label setNumberOfLines:0];
     NSString *s = label.text;
-    UIFont *font = [UIFont fontWithName:@"Arial" size:label.font.pointSize];
+    UIFont *font = [label font];
     CGSize size = CGSizeMake(320,2000);
     CGSize labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
     CGRect frame = label.frame;
