@@ -21,6 +21,8 @@ Three animation types are supported:
  - WBadgeAnimTypeShake
  - WBadgeAnimTypeBreathe
  - WBadgeAnimTypeBounce
+
+sssssss
  
 
 Here are examples for WZLBadge:
