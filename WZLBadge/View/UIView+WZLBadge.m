@@ -8,7 +8,6 @@
 
 #import "UIView+WZLBadge.h"
 #import <objc/runtime.h>
-#import "UIView+Frame.h"
 #import "CAAnimation+WAnimation.h"
 
 @implementation UIView (WZLBadge)
@@ -47,28 +46,27 @@
     self.badge.hidden = YES;
 }
 
-
-
 #pragma mark -- private methods
 - (void)showBadgeWithValue:(NSString *)value
 {
     [self badgeInit];
     
     self.badge.text = value;
-
+    
     if (value && ![value isEqualToString:@""]) {
         [self adjustLabelWidth:self.badge];
-        self.badge.width = self.badge.width - 4;
-        self.badge.height = 12;
-        if (self.badge.width < self.badge.height) {
-            self.badge.width = self.badge.height;
+        CGRect frame = self.badge.frame;
+        frame.size.height = 12;
+        if(CGRectGetWidth(frame) < CGRectGetHeight(frame)) {
+            frame.size.width = CGRectGetHeight(frame);
         }
         
-        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
+        self.badge.frame = frame;
+        self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.font = [UIFont boldSystemFontOfSize:9];
     }
     
-    self.badge.layer.cornerRadius = self.badge.height / 2;
+    self.badge.layer.cornerRadius = CGRectGetHeight(self.badge.frame) / 2;
     self.badge.hidden = NO;
     if (value == 0) {
         self.badge.hidden = YES;
@@ -85,15 +83,13 @@
         self.badgeTextColor = [UIColor whiteColor];
     }
     
-    if (nil == self.badge) {
+    if (!self.badge) {
         CGFloat redotWidth = 8;
-        CGRect frm = CGRectMake(self.width, -redotWidth, redotWidth, redotWidth);
+        CGRect frm = CGRectMake(CGRectGetWidth(self.frame), -redotWidth, redotWidth, redotWidth);
         self.badge = [[UILabel alloc] initWithFrame:frm];
         self.badge.textAlignment = NSTextAlignmentCenter;
-        self.badge.center = CGPointMake(self.width + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
         self.badge.backgroundColor = self.badgeBgColor;
         self.badge.textColor = self.badgeTextColor;
-        self.badge.layer.cornerRadius = self.badge.width / 2;
         self.badge.layer.masksToBounds = YES;//very important
         [self addSubview:self.badge];
     }
@@ -104,8 +100,8 @@
 {
     [label setNumberOfLines:0];
     NSString *s = label.text;
-    UIFont *font = [UIFont fontWithName:@"Arial" size:label.font.pointSize];
-    CGSize size = CGSizeMake(320,2000);
+    UIFont *font = [label font];
+    CGSize size = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) ,CGFLOAT_MAX);
     CGSize labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
     CGRect frame = label.frame;
     frame.size = labelsize;

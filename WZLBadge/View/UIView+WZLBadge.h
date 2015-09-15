@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WZLBadgeProtocol.h"
 
-
 #pragma mark -- badge apis
 
 @interface UIView (WZLBadge)<WZLBadgeProtocol>
