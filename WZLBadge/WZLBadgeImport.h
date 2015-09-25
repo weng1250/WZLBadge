@@ -15,5 +15,6 @@
 
 #import "UIView+WZLBadge.h"
 #import "UIBarButtonItem+WZLBadge.h"
+#import "UITabBarItem+WZLBadge.h"
 
 #endif

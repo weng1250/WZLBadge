@@ -36,29 +36,13 @@
 {
     //configure table view
     CGFloat y = NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0 ? 64 : 44;
-    CGRect frame = CGRectMake(0, y, self.view.width, self.view.height);
+    CGRect frame = CGRectMake(0, y, self.view.width, self.view.height - y - 44);
     self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.userInteractionEnabled = YES;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.tableView];
-    
-    [self setupNaviBarItems];
-}
-
-- (void)setupNaviBarItems
-{
-    //configure navi item
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_list.png"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(onBarItemClicked:)];
-    self.navigationItem.leftBarButtonItem = leftItem;
-    
-    //show example of customize badge`s centerOffset property
-    leftItem.badgeCenterOffset = CGPointMake(-8, 0);
-    [leftItem showBadge];
 }
 
 - (void)configCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath
@@ -68,20 +52,11 @@
     UIView *view = (UIView *)self.dataItems[section][row];
     view.y = 10;
     view.middleX = cell.width / 2;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        [cell.contentView addSubview:view];
-    } else {
-        [cell addSubview:view];
-    }
+    
+    [cell.contentView addSubview:view];
     //configure cell title
     NSArray *subtitles = @[@"red dot style:", @"new style:", @"number style:", @"number style:"];
     cell.detailTextLabel.text = subtitles[row];
-}
-
-#pragma mark -- handle actions
-- (void)onBarItemClicked:(UIBarButtonItem *)sender
-{
-    [sender clearBadge];
 }
 
 
@@ -111,7 +86,7 @@
         [staticBadges addObject:btn];
     }
     
-    WBadgeAnimType animations[] = {WBadgeAnimTypeScale, WBadgeAnimTypeBreathe, WBadgeAnimTypeShake, WBadgeAnimTypeBounce};
+    WBadgeAnimType animations[] = {WBadgeAnimTypeShake, WBadgeAnimTypeBounce, WBadgeAnimTypeBreathe, WBadgeAnimTypeScale};
     for (NSInteger i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
@@ -155,10 +130,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIView *view = (UIView *)self.dataItems[indexPath.section][indexPath.row];
-    //[view clearBadge];
-    static int i = 0;
-    [view showBadgeWithStyle:WBadgeStyleNumber value:i animationType:WBadgeAnimTypeNone];
-    i++;
+    [view clearBadge];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

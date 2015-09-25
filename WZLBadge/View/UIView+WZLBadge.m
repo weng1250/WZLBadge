@@ -195,6 +195,14 @@
 }
 
 
+- (void)removeAnimation
+{
+    if (self.badge) {
+        [self.badge.layer removeAllAnimations];
+    }
+}
+
+
 #pragma mark -- setter/getter
 - (UILabel *)badge
 {
@@ -214,6 +222,9 @@
 - (void)setBadgeBgColor:(UIColor *)badgeBgColor
 {
     objc_setAssociatedObject(self, &badgeBgColorKey, badgeBgColor, OBJC_ASSOCIATION_RETAIN);
+    if (self.badge) {
+        self.badge.backgroundColor = badgeBgColor;
+    }
 }
 
 - (UIColor *)badgeTextColor
@@ -224,6 +235,9 @@
 - (void)setBadgeTextColor:(UIColor *)badgeTextColor
 {
     objc_setAssociatedObject(self, &badgeTextColorKey, badgeTextColor, OBJC_ASSOCIATION_RETAIN);
+    if (self.badge) {
+        self.badge.textColor = badgeTextColor;
+    }
 }
 
 - (WBadgeAnimType)aniType
@@ -241,6 +255,10 @@
 {
     NSNumber *numObj = @(aniType);
     objc_setAssociatedObject(self, &badgeAniTypeKey, numObj, OBJC_ASSOCIATION_RETAIN);
+    if (self.badge) {
+        [self removeAnimation];
+        [self beginAnimation];
+    }
 }
 
 - (CGRect)badgeFrame
@@ -261,6 +279,9 @@
     NSDictionary *frameInfo = @{@"x" : @(badgeFrame.origin.x), @"y" : @(badgeFrame.origin.y),
                                 @"width" : @(badgeFrame.size.width), @"height" : @(badgeFrame.size.height)};
     objc_setAssociatedObject(self, &badgeFrameKey, frameInfo, OBJC_ASSOCIATION_RETAIN);
+    if (self.badge) {
+        self.badge.frame = badgeFrame;
+    }
 }
 
 - (CGPoint)badgeCenterOffset
@@ -278,6 +299,9 @@
 {
     NSDictionary *cenerInfo = @{@"x" : @(badgeCenterOff.x), @"y" : @(badgeCenterOff.y)};
     objc_setAssociatedObject(self, &badgeCenterOffsetKey, cenerInfo, OBJC_ASSOCIATION_RETAIN);
+    if (self.badge) {
+        self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + badgeCenterOff.x, badgeCenterOff.y);
+    }
 }
 
 @end

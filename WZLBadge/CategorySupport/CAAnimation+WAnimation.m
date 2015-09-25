@@ -131,8 +131,8 @@
                   [NSValue valueWithCGPoint:CGPointMake(originPos.x+hOffset, originPos.y)],
                   [NSValue valueWithCGPoint:CGPointMake(originPos.x, originPos.y)]
                   ];
-    anim.repeatCount=repeatTimes;
-    anim.duration=time;
+    anim.repeatCount = repeatTimes;
+    anim.duration = time;
     anim.fillMode = kCAFillModeForwards;
     return anim;
 }
