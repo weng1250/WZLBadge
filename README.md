@@ -25,9 +25,9 @@ Three animation types are supported:
 
 Here are examples for WZLBadge:
 
-![](http://chuantu.biz/t2/11/1439361693x-1376436589.gif)
+![](http://chuantu.biz/t2/13/1443173925x1729546381.gif)
 
-![](http://chuantu.biz/t2/11/1439361809x-1376436545.gif)
+![](http://chuantu.biz/t2/13/1443173966x1822614216.gif)
 
 ----------
 
