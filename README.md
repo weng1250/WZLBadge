@@ -21,15 +21,13 @@ Three animation types are supported:
  - WBadgeAnimTypeShake
  - WBadgeAnimTypeBreathe
  - WBadgeAnimTypeBounce
-
-sssssss
  
 
 Here are examples for WZLBadge:
 
-![](http://chuantu.biz/t2/11/1439361693x-1376436589.gif)
+![](http://chuantu.biz/t2/13/1443173925x1729546381.gif)
 
-![](http://chuantu.biz/t2/11/1439361809x-1376436545.gif)
+![](http://chuantu.biz/t2/13/1443173966x1822614216.gif)
 
 ----------
 
@@ -44,7 +42,7 @@ Drag the
 
 Method2:
 Use CocoaPods to install automaticlly:
-pod 'WZLBadge', '~> 1.1.2’
+pod 'WZLBadge', '~> 1.1.3’
 
 ----------
 
@@ -85,7 +83,6 @@ BADGE CUSTOMIZATION
 Feel free to customize badge size, position, animation style or anything else.
 
 WZLBadge provides easy way to customize its style.:
-(**NOTE: these properties should be called before - [showBadge] method**)
 
     //set background color. red color by default
     view.badgeBgColor = [UIColor purpleColor];
@@ -131,6 +128,11 @@ Feel free to open an issue or pull request, if you need help or there is a bug.
 ----------
 CHANGE LOG
 --------------------
+V1.2  2015.09.25
+ 1.UITabBarItem badge is supproted;
+ 2.Enable change badge properties when badge is showing;
+ 3.Other code optimization.
+
 V1.1  2015.08.12
 
  1. UIBarButtonItem badge is supported. UIBarButtonItem is kind of NSObject and its displayed view is invisiable. This version makes usage of UIBarButtonItem badge as to UIView.
