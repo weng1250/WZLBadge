@@ -12,6 +12,8 @@
 	<dict>
 		<key>3BF1779AF4FFF0FD58C1CC3AF3C4EB46ABB0E373</key>
 		<string>https://github.com/weng1250/WZLBadge.git</string>
+		<key>AAB138F125F5B37A68BC23E8221CF7BBF607AC69</key>
+		<string>https://git.oschina.net/zilin_weng/WuJieCaoJoke.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>WZLBadgeDemo.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>3BF1779AF4FFF0FD58C1CC3AF3C4EB46ABB0E373</key>
 		<string>../..</string>
+		<key>AAB138F125F5B37A68BC23E8221CF7BBF607AC69</key>
+		<string>../../../WuJieCaoJoke</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/weng1250/WZLBadge.git</string>
@@ -28,6 +32,14 @@
 	<string>3BF1779AF4FFF0FD58C1CC3AF3C4EB46ABB0E373</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AAB138F125F5B37A68BC23E8221CF7BBF607AC69</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WuJieCaoJoke</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
