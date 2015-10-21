@@ -152,7 +152,23 @@
     NSString *s = label.text;
     UIFont *font = [label font];
     CGSize size = CGSizeMake(320,2000);
-    CGSize labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+	CGSize labelsize;
+
+	if ([s respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+		labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+#pragma clang diagnostic pop
+		
+	} else {
+		NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+		[style setLineBreakMode:NSLineBreakByWordWrapping];
+		
+		labelsize = [s boundingRectWithSize:size
+									options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+								 attributes:@{ NSFontAttributeName:font, NSParagraphStyleAttributeName : style}
+									context:nil].size;
+	}
     CGRect frame = label.frame;
     frame.size = labelsize;
     [label setFrame:frame];
