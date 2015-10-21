@@ -24,6 +24,7 @@
 //key for associative methods during runtime
 static char badgeLabelKey;
 static char badgeBgColorKey;
+static char badgeFontKey;
 static char badgeTextColorKey;
 static char badgeAniTypeKey;
 static char badgeFrameKey;
