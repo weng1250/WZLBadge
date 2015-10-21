@@ -72,6 +72,16 @@
     [kActualView setBadge:label];
 }
 
+- (UIFont *)badgeFont
+{
+	return kActualView.badgeFont;
+}
+
+- (void)setBadgeFont:(UIFont *)badgeFont
+{
+	[kActualView setBadgeFont:badgeFont];
+}
+
 - (UIColor *)badgeBgColor
 {
     return [kActualView badgeBgColor];

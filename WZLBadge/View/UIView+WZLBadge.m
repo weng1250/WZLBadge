@@ -228,7 +228,6 @@
 	if (self.badge) {
 		self.badge.font = badgeFont;
 	}
-
 }
 
 - (UIColor *)badgeBgColor
