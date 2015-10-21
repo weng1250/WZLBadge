@@ -218,7 +218,7 @@
 
 - (UIFont *)badgeFont
 {
-	id font = objc_getAssociatedObject(self, &badgeFontKey)
+	id font = objc_getAssociatedObject(self, &badgeFontKey);
 	return font == nil ? kWZLBadgeDefaultFont : font;
 }
 
