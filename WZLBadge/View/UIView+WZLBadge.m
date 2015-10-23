@@ -154,7 +154,7 @@
     CGSize size = CGSizeMake(320,2000);
 	CGSize labelsize;
 
-	if ([s respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+	if (![s respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 		labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
