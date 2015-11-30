@@ -170,7 +170,7 @@
 									context:nil].size;
 	}
     CGRect frame = label.frame;
-    frame.size = labelsize;
+	frame.size = CGSizeMake(ceilf(labelsize.width), ceilf(labelsize.height));
     [label setFrame:frame];
 }
 
