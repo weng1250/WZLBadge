@@ -117,18 +117,26 @@ This project will be update continually. Therefore, **fork** or **star** would b
 
 I wish it to be an ultimat solution for UIView badge in iOS.
 
-
 ----------
+AUTHOR
+--------------------
+Zilin Weng(翁子林) https://github.com/weng1250
+----------
+
 CONTRIBUTE
 --------------------
- - Zilin Weng(翁子林) https://github.com/weng1250
  - jfuellert https://github.com/jfuellert
+ - zhangao0086 https://github.com/zhangao0086
 
 Feel free to open an issue or pull request, if you need help or there is a bug.
 
 ----------
 CHANGE LOG
 --------------------
+V1.2.2  2015.12.18
+ 1.Enable badge font customization
+ 2.code warning removed
+
 V1.2  2015.09.25
  1.UITabBarItem badge is supproted;
  2.Enable change badge properties when badge is showing;
