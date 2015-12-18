@@ -10,6 +10,8 @@
 #import <objc/runtime.h>
 #import "CAAnimation+WAnimation.h"
 
+#define kWZLBadgeDefaultFont				([UIFont boldSystemFontOfSize:9])
+
 @implementation UIView (WZLBadge)
 
 #pragma mark -- public methods
@@ -86,7 +88,7 @@
         self.badge.frame = frame;
         
         self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
-        self.badge.font = [UIFont boldSystemFontOfSize:9];
+        self.badge.font = kWZLBadgeDefaultFont;
         self.badge.layer.cornerRadius = CGRectGetHeight(self.badge.frame) / 3;
     }
     self.badge.hidden = NO;
@@ -100,14 +102,14 @@
     [self badgeInit];
     self.badge.hidden = (value == 0);
     self.badge.tag = WBadgeStyleNumber;
-    self.badge.font = [UIFont boldSystemFontOfSize:9];
+    self.badge.font = self.badgeFont;
     self.badge.text = (value >= kWZLBadgeMaximumBadgeNumber ?
                        [NSString stringWithFormat:@"%@+", @(kWZLBadgeMaximumBadgeNumber)] :
                        [NSString stringWithFormat:@"%@", @(value)]);
     [self adjustLabelWidth:self.badge];
     CGRect frame = self.badge.frame;
     frame.size.width += 4;
-    frame.size.height = 12;
+    frame.size.height += 4;
     if(CGRectGetWidth(frame) < CGRectGetHeight(frame)) {
         frame.size.width = CGRectGetHeight(frame);
     }
@@ -150,9 +152,25 @@
     NSString *s = label.text;
     UIFont *font = [label font];
     CGSize size = CGSizeMake(320,2000);
-    CGSize labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+	CGSize labelsize;
+
+	if (![s respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+		labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+#pragma clang diagnostic pop
+		
+	} else {
+		NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+		[style setLineBreakMode:NSLineBreakByWordWrapping];
+		
+		labelsize = [s boundingRectWithSize:size
+									options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+								 attributes:@{ NSFontAttributeName:font, NSParagraphStyleAttributeName : style}
+									context:nil].size;
+	}
     CGRect frame = label.frame;
-    frame.size = labelsize;
+	frame.size = CGSizeMake(ceilf(labelsize.width), ceilf(labelsize.height));
     [label setFrame:frame];
 }
 
@@ -212,6 +230,20 @@
 - (void)setBadge:(UILabel *)label
 {
     objc_setAssociatedObject(self, &badgeLabelKey, label, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (UIFont *)badgeFont
+{
+	id font = objc_getAssociatedObject(self, &badgeFontKey);
+	return font == nil ? kWZLBadgeDefaultFont : font;
+}
+
+- (void)setBadgeFont:(UIFont *)badgeFont
+{
+	objc_setAssociatedObject(self, &badgeFontKey, badgeFont, OBJC_ASSOCIATION_RETAIN);
+	if (self.badge) {
+		self.badge.font = badgeFont;
+	}
 }
 
 - (UIColor *)badgeBgColor
