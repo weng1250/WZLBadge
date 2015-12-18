@@ -121,8 +121,9 @@ I wish it to be an ultimat solution for UIView badge in iOS.
 AUTHOR
 --------------------
 Zilin Weng(翁子林) https://github.com/weng1250
-----------
 
+
+----------
 CONTRIBUTE
 --------------------
  - jfuellert https://github.com/jfuellert
