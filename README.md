@@ -70,11 +70,14 @@ USAGE
 
 or simply call interface:[- showBadge]
  
-3. Use the following to clear badge easily:
+3. Use the following to hide badge easily:
  
 
 > [someView clearBadge];
 
+4.Use the following to resume badge when it has been hidden:
+
+> [someView resumeBadge];
 
 ----------
 
@@ -134,6 +137,9 @@ Feel free to open an issue or pull request, if you need help or there is a bug.
 ----------
 CHANGE LOG
 --------------------
+v1.2.3 2016.2.15
+ 1.Enable resume badge when badge has been cleard(removed)
+
 V1.2.2  2015.12.18
  1.Enable badge font customization
  2.code warning removed
