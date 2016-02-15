@@ -48,6 +48,11 @@
     [kActualView clearBadge];
 }
 
+- (void)resumeBadge
+{
+    [kActualView resumeBadge];
+}
+
 #pragma mark -- private method
 
 /**

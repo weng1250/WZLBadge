@@ -59,7 +59,15 @@
     self.badge.hidden = YES;
 }
 
-
+/**
+ *  make bage(if existing) not hiden
+ */
+- (void)resumeBadge
+{
+    if (self.badge && self.badge.hidden == YES) {
+        self.badge.hidden = NO;
+    }
+}
 
 #pragma mark -- private methods
 - (void)showRedDotBadge
@@ -77,7 +85,7 @@
 - (void)showNewBadge
 {
     [self badgeInit];
-    //if badge has been displayed and, in addition, is was not red dot style, we must update UI.
+    //if badge has been displayed and, in addition, is not red dot style, we must update UI.
     if (self.badge.tag != WBadgeStyleNew) {
         self.badge.text = @"new";
         self.badge.tag = WBadgeStyleNew;

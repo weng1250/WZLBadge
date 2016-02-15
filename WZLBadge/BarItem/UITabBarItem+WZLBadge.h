@@ -45,9 +45,13 @@
 
 
 /**
- *  clear badge
+ *  clear badge(hide badge)
  */
 - (void)clearBadge;
 
+/**
+ *  make bage(if existing) not hiden
+ */
+- (void)resumeBadge;
 
 @end
