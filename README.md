@@ -43,7 +43,7 @@ Drag the
 Method2:
 Use CocoaPods to install automaticlly:
 
-pod 'WZLBadge', '~> 1.2.1'
+pod 'WZLBadge'
 
 ----------
 
