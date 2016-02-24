@@ -3,7 +3,7 @@ BADGE IN ONE LINE(iOS)
 ===================
 OVERVIEW
 ===================
-WZLBadge is a tool to add or clear badge for **any UIViews**, which is written in Objective-C, **supporting iOS5 ~ iOS8**, supporting **portrait and landscape device orientation**.
+WZLBadge is a tool to add or clear badge for **any UIViews**, which is written in Objective-C, **supporting iOS5 or above**, supporting **portrait and landscape device orientation**.
 
 > The code is implemented by the way of category for UIView, thus, 
 it is **very easy to use**.
