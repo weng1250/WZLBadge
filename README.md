@@ -27,7 +27,7 @@ Here are examples for WZLBadge:
 
 ![](http://media.xtwind.com/images/2016/03/14/09a28a239eba55b920b804b7c356f2b8.gif)
 
-![](http://media.xtwind.com/images/2016/03/14/09a28a239eba55b920b804b7c356f2b8.gif)
+![](http://media.xtwind.com/images/2016/03/14/d1db854e8fa291c0356f76727c6c6506.gif)
 
 ----------
 
