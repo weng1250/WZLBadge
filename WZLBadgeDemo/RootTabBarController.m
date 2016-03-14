@@ -25,6 +25,11 @@
     [self setupNaviBarItems];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)setupTabbar
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -78,7 +83,7 @@
             //adjust badge to fit portrait oriention
             firstItem.badgeCenterOffset = CGPointMake(-50, 8);
         } else if(UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
-            firstItem.badgeCenterOffset = CGPointMake(-120, 8);
+            firstItem.badgeCenterOffset = CGPointMake(-150, 8);
         }
     }
 }

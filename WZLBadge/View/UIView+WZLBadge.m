@@ -150,6 +150,7 @@
         self.badge.layer.masksToBounds = YES;//very important
         self.badge.hidden = NO;
         [self addSubview:self.badge];
+        [self bringSubviewToFront:self.badge];
     }
 }
 

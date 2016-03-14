@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19133FAC1C9663B7002D4FB4 /* TableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 19133FAB1C9663B7002D4FB4 /* TableViewDataSource.m */; };
 		19685FF71B7898E600AD10C2 /* nav_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19685FF61B7898E600AD10C2 /* nav_list@2x.png */; };
 		196860021B78A6F500AD10C2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196860011B78A6F500AD10C2 /* libz.dylib */; };
 		1968600F1B78AB4A00AD10C2 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968600C1B78AB4A00AD10C2 /* UIView+WZLBadge.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19133FAA1C9663B7002D4FB4 /* TableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewDataSource.h; sourceTree = "<group>"; };
+		19133FAB1C9663B7002D4FB4 /* TableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSource.m; sourceTree = "<group>"; };
 		19685FF61B7898E600AD10C2 /* nav_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_list@2x.png"; sourceTree = "<group>"; };
 		196860011B78A6F500AD10C2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1968600B1B78AB4A00AD10C2 /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 				19AD4E7E1BB3D0610059AA66 /* RootTabBarController.m */,
 				19C18C4A1B3AAEBA00BD63D2 /* ViewController.h */,
 				19C18C4B1B3AAEBA00BD63D2 /* ViewController.m */,
+				19133FAA1C9663B7002D4FB4 /* TableViewDataSource.h */,
+				19133FAB1C9663B7002D4FB4 /* TableViewDataSource.m */,
 				19C18C431B3AAEBA00BD63D2 /* Supporting Files */,
 			);
 			path = WZLBadgeDemo;
@@ -331,6 +336,7 @@
 				1968601F1B7AD02E00AD10C2 /* CAAnimation+WAnimation.m in Sources */,
 				19AD4E7F1BB3D0610059AA66 /* RootTabBarController.m in Sources */,
 				19AD4E901BB3D4D80059AA66 /* UIView+Frame.m in Sources */,
+				19133FAC1C9663B7002D4FB4 /* TableViewDataSource.m in Sources */,
 				19C18C491B3AAEBA00BD63D2 /* AppDelegate.m in Sources */,
 				1968600F1B78AB4A00AD10C2 /* UIView+WZLBadge.m in Sources */,
 				19AD4E8B1BB3D4600059AA66 /* UITabBarItem+WZLBadge.m in Sources */,

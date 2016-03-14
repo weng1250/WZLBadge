@@ -7,13 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "TableViewDataSource.h"
 #import "UIView+Frame.h"
 #import "WZLBadgeImport.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *dataItems;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) TableViewDataSource *tabDataSource;
 
 @end
 
@@ -23,13 +24,9 @@
     [super viewDidLoad];
     self.title = @"WZLBadge Examples";
     [self setup];
-    [self initItems];
+    [self loadTableViewDataSource];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark -- private methods
 - (void)setup
@@ -39,32 +36,21 @@
     CGRect frame = CGRectMake(0, y, self.view.width, self.view.height - y - 44);
     self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
-    self.tableView.dataSource = self;
     self.tableView.userInteractionEnabled = YES;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.rowHeight = 60;
     [self.view addSubview:self.tableView];
 }
 
-- (void)configCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath
+- (void)loadTableViewDataSource
 {
-    NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
-    UIView *view = (UIView *)self.dataItems[section][row];
-    view.y = 10;
-    view.middleX = cell.width / 2;
-    
-    [cell.contentView addSubview:view];
-    //configure cell title
-    NSArray *subtitles = @[@"red dot style:", @"new style:", @"number style:", @"number style:"];
-    cell.detailTextLabel.text = subtitles[row];
+    self.tabDataSource = [[TableViewDataSource alloc] initWithDataItems:[self prepareDataItems]];
+    self.tableView.dataSource = self.tabDataSource;
 }
 
-
-#pragma mark -- delegate of tableview
-
-- (void)initItems
+- (NSMutableArray *)prepareDataItems
 {
-    self.dataItems = [[NSMutableArray alloc] initWithCapacity:0];
+    NSMutableArray *dataItems = [[NSMutableArray alloc] initWithCapacity:0];
     
     NSMutableArray *staticBadges = [NSMutableArray array];
     NSMutableArray *dynamicBadges = [NSMutableArray array];
@@ -73,15 +59,16 @@
     for (NSInteger i = 0; i < sizeof(styles) / sizeof(styles[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
+        btn.tag = 1000;
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
         if (i == 1) {
             btn.badgeBgColor = [UIColor purpleColor];
             btn.badgeCenterOffset = CGPointMake(-btn.width, 0);
-        }
-        if (i == 2) {
-            btn.badgeBgColor = [UIColor blueColor];
-        }
+        } else
+            if (i == 2) {
+                btn.badgeBgColor = [UIColor blueColor];
+            }
         [btn showBadgeWithStyle:styles[i] value:100 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
         [staticBadges addObject:btn];
     }
@@ -90,61 +77,15 @@
     for (NSInteger i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
+        btn.tag = 1000;
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
         [btn showBadgeWithStyle:styles[i] value:100 animationType:animations[i]];
         [dynamicBadges addObject:btn];
     }
-    [self.dataItems addObject:staticBadges];
-    [self.dataItems addObject:dynamicBadges];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [self.dataItems count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [[self.dataItems objectAtIndex:section] count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellID];
-    }
-    [self configCell:cell indexPath:indexPath];
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UIView *view = (UIView *)self.dataItems[indexPath.section][indexPath.row];
-    [view clearBadge];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSArray *headTitles = @[@"badge with not any animation", @"badge with animations"];
-    return headTitles[section];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    if (section == [self.dataItems count] - 1) {
-        return @"Select cell to clear badge.";
-    }
-    return nil;
+    [dataItems addObject:staticBadges];
+    [dataItems addObject:dynamicBadges];
+    return dataItems;
 }
 
 @end
