@@ -113,7 +113,7 @@
     self.badge.hidden = (value == 0);
     self.badge.tag = WBadgeStyleNumber;
     self.badge.font = self.badgeFont;
-    self.badge.text = (value >= self.badgeMaximumBadgeNumber ?
+    self.badge.text = (value > self.badgeMaximumBadgeNumber ?
                        [NSString stringWithFormat:@"%@+", @(self.badgeMaximumBadgeNumber)] :
                        [NSString stringWithFormat:@"%@", @(value)]);
     [self adjustLabelWidth:self.badge];
