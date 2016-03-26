@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WZLBadgeProtocol.h"
 
-//for WBadgeStyleNumber style badge, if badge value is above kWZLBadgeMaximumBadgeNumber,
-//"kWZLBadgeMaximumBadgeNumber+" will be printed.
-#define kWZLBadgeMaximumBadgeNumber                     99
-
 #pragma mark -- badge apis
 
 @interface UIView (WZLBadge)<WZLBadgeProtocol>
@@ -30,6 +26,10 @@
 
 @property (nonatomic, assign) WBadgeAnimType aniType;   /* NOTE that this is not animation type of badge's
                                                          appearing, nor  hidding*/
+
+@property (nonatomic, assign) NSInteger badgeMaximumBadgeNumber; /*for WBadgeStyleNumber style badge, 
+                                                                  if badge value is above badgeMaximumBadgeNumber,
+                                                                  "badgeMaximumBadgeNumber+" will be printed. */
 
 
 /**
