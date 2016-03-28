@@ -12,6 +12,8 @@
 
 #define kWZLBadgeDefaultFont				([UIFont boldSystemFontOfSize:9])
 
+#define kWZLBadgeDefaultMaximumBadgeNumber                     99
+
 @implementation UIView (WZLBadge)
 
 #pragma mark -- public methods
@@ -111,8 +113,8 @@
     self.badge.hidden = (value == 0);
     self.badge.tag = WBadgeStyleNumber;
     self.badge.font = self.badgeFont;
-    self.badge.text = (value >= kWZLBadgeMaximumBadgeNumber ?
-                       [NSString stringWithFormat:@"%@+", @(kWZLBadgeMaximumBadgeNumber)] :
+    self.badge.text = (value > self.badgeMaximumBadgeNumber ?
+                       [NSString stringWithFormat:@"%@+", @(self.badgeMaximumBadgeNumber)] :
                        [NSString stringWithFormat:@"%@", @(value)]);
     [self adjustLabelWidth:self.badge];
     CGRect frame = self.badge.frame;
@@ -343,6 +345,21 @@
     if (self.badge) {
         self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + badgeCenterOff.x, badgeCenterOff.y);
     }
+}
+
+- (NSInteger)badgeMaximumBadgeNumber {
+    id obj = objc_getAssociatedObject(self, &badgeMaximumBadgeNumberKey);
+    if(obj != nil && [obj isKindOfClass:[NSNumber class]])
+    {
+        return [obj integerValue];
+    }
+    else
+        return kWZLBadgeDefaultMaximumBadgeNumber;
+}
+
+- (void)setBadgeMaximumBadgeNumber:(NSInteger)badgeMaximumBadgeNumber {
+    NSNumber *numObj = @(badgeMaximumBadgeNumber);
+    objc_setAssociatedObject(self, &badgeMaximumBadgeNumberKey, numObj, OBJC_ASSOCIATION_RETAIN);
 }
 
 @end

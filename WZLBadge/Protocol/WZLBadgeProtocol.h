@@ -29,6 +29,7 @@ static char badgeTextColorKey;
 static char badgeAniTypeKey;
 static char badgeFrameKey;
 static char badgeCenterOffsetKey;
+static char badgeMaximumBadgeNumberKey;
 
 typedef NS_ENUM(NSUInteger, WBadgeStyle)
 {
@@ -66,6 +67,10 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 
 @property (nonatomic, assign) WBadgeAnimType aniType;   /* NOTE that this is not animation type of badge's
                                                          appearing, nor  hidding*/
+
+@property (nonatomic, assign) NSInteger badgeMaximumBadgeNumber; /*for WBadgeStyleNumber style badge,
+                                                                  if badge value is above badgeMaximumBadgeNumber,
+                                                                  "badgeMaximumBadgeNumber+" will be printed. */
 
 /**
  *  show badge with red dot style and WBadgeAnimTypeNone by default.
