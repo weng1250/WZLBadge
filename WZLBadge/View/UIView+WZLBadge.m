@@ -75,6 +75,7 @@
 - (void)showRedDotBadge
 {
     [self badgeInit];
+    [self resetRedDotBadgeFrame];
     //if badge has been displayed and, in addition, is was not red dot style, we must update UI.
     if (self.badge.tag != WBadgeStyleRedDot) {
         self.badge.text = @"";
@@ -82,6 +83,14 @@
         self.badge.layer.cornerRadius = CGRectGetWidth(self.badge.frame) / 2;
     }
     self.badge.hidden = NO;
+}
+
+- (void)resetRedDotBadgeFrame {
+    if (self.badge) {
+        CGFloat redotWidth = 8;
+        CGRect frm = CGRectMake(CGRectGetWidth(self.frame), -redotWidth, redotWidth, redotWidth);
+        self.badge.frame = frm;
+    }
 }
 
 - (void)showNewBadge
