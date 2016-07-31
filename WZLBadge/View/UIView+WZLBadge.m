@@ -93,7 +93,7 @@
         self.badge.tag = WBadgeStyleNew;
         
         CGRect frame = self.badge.frame;
-        frame.size.width = 20;
+        frame.size.width = 22;
         frame.size.height = 13;
         self.badge.frame = frame;
         
