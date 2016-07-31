@@ -47,8 +47,8 @@
 {
     UITabBarItem *firstItem = self.tabBar.items.firstObject;
     //it is necessary to adjust badge position
-    firstItem.badgeCenterOffset = CGPointMake(-50, 8);
-    [firstItem showBadge];
+    firstItem.badgeCenterOffset = CGPointMake(0, 0);
+    [firstItem showBadgeWithStyle:WBadgeStyleNew value:0 animationType:WBadgeAnimTypeShake];
 }
 
 - (void)setupNaviBarItems
@@ -77,15 +77,7 @@
 #pragma mark -- handle action
 - (void)handleDeviceRotation:(id)obj
 {
-    UITabBarItem *firstItem = self.tabBar.items.firstObject;
-    if (firstItem.badge) {
-        if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
-            //adjust badge to fit portrait oriention
-            firstItem.badgeCenterOffset = CGPointMake(-50, 8);
-        } else if(UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
-            firstItem.badgeCenterOffset = CGPointMake(-150, 8);
-        }
-    }
+    //do nothing
 }
 
 - (void)onBarItemClicked:(UIBarButtonItem *)sender
