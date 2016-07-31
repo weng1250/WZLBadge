@@ -137,6 +137,10 @@ Feel free to open an issue or pull request, if you need help or there is a bug.
 ----------
 CHANGE LOG
 --------------------
+
+v.1.2.5 201.7.31
+ fix bug 'when showing TabbarItem bage, badge is covered by tabbarItem icon'
+
 v1.2.3 2016.2.15
  1.Enable resume badge when badge has been cleard(removed)
 
