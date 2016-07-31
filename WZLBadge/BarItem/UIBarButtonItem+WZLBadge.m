@@ -137,4 +137,14 @@
     [kActualView setBadgeCenterOffset:badgeCenterOffset];
 }
 
+- (NSInteger)badgeMaximumBadgeNumber
+{
+    return [kActualView badgeMaximumBadgeNumber];
+}
+
+- (void)setBadgeMaximumBadgeNumber:(NSInteger)badgeMaximumBadgeNumber
+{
+    [kActualView setBadgeMaximumBadgeNumber:badgeMaximumBadgeNumber];
+}
+
 @end
