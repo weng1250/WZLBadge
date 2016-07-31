@@ -37,6 +37,18 @@
     [kActualView showBadgeWithStyle:style value:value animationType:aniType];
 }
 
+- (UIView *)find:(UIView *)view firstSubviewWithClass:(Class)cls
+{
+    __block UIView *targetView = nil;
+    [view.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([subview isKindOfClass:cls]) {
+            targetView = subview;
+            *stop = YES;
+        }
+    }];
+    return targetView;
+}
+
 /**
  *  clear badge
  */
@@ -60,7 +72,17 @@
  */
 - (UIView *)getActualBadgeSuperView
 {
-    return [self valueForKeyPath:@"_view"];//use KVC to hack actual view
+    // 1.get UITabbarButtion
+    UIView *bottomView = [self valueForKeyPath:@"_view"];
+    
+    // 2.get imageView, to make sure badge front at anytime.
+    UIView *actualSuperView = nil;
+    if (bottomView) {
+        actualSuperView = [self find:bottomView firstSubviewWithClass:NSClassFromString(@"UITabBarSwappableImageView")];
+    }
+    
+    // badge label will be added onto imageView
+    return actualSuperView;
 }
 
 #pragma mark -- setter/getter
@@ -132,6 +154,16 @@
 - (void)setBadgeCenterOffset:(CGPoint)badgeCenterOffset
 {
     [kActualView setBadgeCenterOffset:badgeCenterOffset];
+}
+
+- (NSInteger)badgeMaximumBadgeNumber
+{
+    return [kActualView badgeMaximumBadgeNumber];
+}
+
+- (void)setBadgeMaximumBadgeNumber:(NSInteger)badgeMaximumBadgeNumber
+{
+    [kActualView setBadgeMaximumBadgeNumber:badgeMaximumBadgeNumber];
 }
 
 @end
