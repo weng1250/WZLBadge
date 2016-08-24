@@ -10,9 +10,16 @@
 #import <objc/runtime.h>
 #import "CAAnimation+WAnimation.h"
 
-#define kWZLBadgeDefaultFont				([UIFont boldSystemFontOfSize:9])
+#define kWZLBadgeDefaultFont  ([UIFont boldSystemFontOfSize:9])
 
-#define kWZLBadgeDefaultMaximumBadgeNumber                     99
+#define kWZLBadgeDefaultMaximumBadgeNumber  99
+#define kWZLBadgeDefaultMinimumBadgeNumber  0
+
+@interface UIView (WZLBadge)
+
+@property (nonatomic, assign) NSInteger badgeValue;
+
+@end
 
 @implementation UIView (WZLBadge)
 
@@ -22,19 +29,20 @@
  */
 - (void)showBadge
 {
-    [self showBadgeWithStyle:WBadgeStyleRedDot value:0 animationType:WBadgeAnimTypeNone];
+    [self showBadgeWithStyle:WBadgeStyleRedDot value:kWZLBadgeDefaultMinimumBadgeNumber animationType:WBadgeAnimTypeNone];
 }
 
 /**
  *  showBadge
  *
  *  @param style WBadgeStyle type
- *  @param value (if 'style' is WBadgeStyleRedDot or WBadgeStyleNew, 
+ *  @param value (if 'style' is WBadgeStyleRedDot or WBadgeStyleNew,
  *                this value will be ignored. In this case, any value will be ok.)
  */
 - (void)showBadgeWithStyle:(WBadgeStyle)style value:(NSInteger)value animationType:(WBadgeAnimType)aniType
 {
     self.aniType = aniType;
+    self.badgeValue = value;
     switch (style) {
         case WBadgeStyleRedDot:
             [self showRedDotBadge];
@@ -106,11 +114,11 @@
 
 - (void)showNumberBadgeWithValue:(NSInteger)value
 {
-    if (value < 0) {
+    if (value < kWZLBadgeDefaultMinimumBadgeNumber) {
         return;
     }
     [self badgeInit];
-    self.badge.hidden = (value == 0);
+    self.badge.hidden = (value == kWZLBadgeDefaultMinimumBadgeNumber);
     self.badge.tag = WBadgeStyleNumber;
     self.badge.font = self.badgeFont;
     self.badge.text = (value > self.badgeMaximumBadgeNumber ?
@@ -119,7 +127,7 @@
     [self adjustLabelWidth:self.badge];
     CGRect frame = self.badge.frame;
     frame.size.width += 4;
-    frame.size.height += 4;
+    //    frame.size.height += 4;
     if(CGRectGetWidth(frame) < CGRectGetHeight(frame)) {
         frame.size.width = CGRectGetHeight(frame);
     }
@@ -127,6 +135,8 @@
     self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + self.badgeCenterOffset.x, self.badgeCenterOffset.y);
     self.badge.layer.cornerRadius = CGRectGetHeight(self.badge.frame) / 2;
 }
+
+
 
 //lazy loading
 - (void)badgeInit
@@ -163,25 +173,26 @@
     NSString *s = label.text;
     UIFont *font = [label font];
     CGSize size = CGSizeMake(320,2000);
-	CGSize labelsize;
-
-	if (![s respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+    CGSize labelsize;
+    
+    if (![s respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-		labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+        labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
 #pragma clang diagnostic pop
-		
-	} else {
-		NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-		[style setLineBreakMode:NSLineBreakByWordWrapping];
-		
-		labelsize = [s boundingRectWithSize:size
-									options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-								 attributes:@{ NSFontAttributeName:font, NSParagraphStyleAttributeName : style}
-									context:nil].size;
-	}
+        
+    } else {
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [style setLineBreakMode:NSLineBreakByWordWrapping];
+        
+        labelsize = [s boundingRectWithSize:size
+                                    options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                 attributes:@{ NSFontAttributeName:font, NSParagraphStyleAttributeName : style}
+                                    context:nil].size;
+    }
     CGRect frame = label.frame;
-	frame.size = CGSizeMake(ceilf(labelsize.width), ceilf(labelsize.height));
+    CGFloat paddingH = 3.0;
+    frame.size = CGSizeMake(ceilf(labelsize.width + paddingH * 2), ceilf(labelsize.height + paddingH));
     [label setFrame:frame];
 }
 
@@ -213,8 +224,8 @@
             break;
         case WBadgeAnimTypeBounce:
             [self.badge.layer addAnimation:[CAAnimation bounce_AnimationRepeatTimes:CGFLOAT_MAX
-                                                                          durTimes:1
-                                                                            forObj:self.badge.layer]
+                                                                           durTimes:1
+                                                                             forObj:self.badge.layer]
                                     forKey:kBadgeBounceAniKey];
             break;
         case WBadgeAnimTypeNone:
@@ -245,16 +256,17 @@
 
 - (UIFont *)badgeFont
 {
-	id font = objc_getAssociatedObject(self, &badgeFontKey);
-	return font == nil ? kWZLBadgeDefaultFont : font;
+    id font = objc_getAssociatedObject(self, &badgeFontKey);
+    return font == nil ? kWZLBadgeDefaultFont : font;
 }
 
 - (void)setBadgeFont:(UIFont *)badgeFont
 {
-	objc_setAssociatedObject(self, &badgeFontKey, badgeFont, OBJC_ASSOCIATION_RETAIN);
-	if (self.badge) {
-		self.badge.font = badgeFont;
-	}
+    objc_setAssociatedObject(self, &badgeFontKey, badgeFont, OBJC_ASSOCIATION_RETAIN);
+    if (self.badge) {
+        self.badge.font = badgeFont;
+        [self showNumberBadgeWithValue:self.badgeValue];
+    }
 }
 
 - (UIColor *)badgeBgColor
@@ -360,6 +372,20 @@
 - (void)setBadgeMaximumBadgeNumber:(NSInteger)badgeMaximumBadgeNumber {
     NSNumber *numObj = @(badgeMaximumBadgeNumber);
     objc_setAssociatedObject(self, &badgeMaximumBadgeNumberKey, numObj, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (void)setBadgeValue:(NSInteger)badgeValue
+{
+    objc_setAssociatedObject(self, @selector(badgeValue), [NSNumber numberWithInteger:badgeValue], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (NSInteger)badgeValue
+{
+    id val = objc_getAssociatedObject(self, _cmd);
+    if (val && [val isKindOfClass:[NSNumber class]]) {
+        return [val integerValue];
+    }
+    return kWZLBadgeDefaultMinimumBadgeNumber;
 }
 
 @end
