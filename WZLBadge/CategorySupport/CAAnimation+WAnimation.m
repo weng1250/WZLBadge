@@ -76,7 +76,6 @@
     animation.removedOnCompletion=NO;
     animation.fillMode=kCAFillModeForwards;
     animation.repeatCount= repeatCount;
-    animation.delegate= self;
     
     return animation;
 }
