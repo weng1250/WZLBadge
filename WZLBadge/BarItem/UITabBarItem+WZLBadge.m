@@ -37,18 +37,6 @@
     [kActualView showBadgeWithStyle:style value:value animationType:aniType];
 }
 
-- (UIView *)find:(UIView *)view firstSubviewWithClass:(Class)cls
-{
-    __block UIView *targetView = nil;
-    [view.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([subview isKindOfClass:cls]) {
-            targetView = subview;
-            *stop = YES;
-        }
-    }];
-    return targetView;
-}
-
 /**
  *  clear badge
  */
@@ -83,6 +71,18 @@
     
     // badge label will be added onto imageView
     return actualSuperView;
+}
+
+- (UIView *)find:(UIView *)view firstSubviewWithClass:(Class)cls
+{
+    __block UIView *targetView = nil;
+    [view.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([subview isKindOfClass:cls]) {
+            targetView = subview;
+            *stop = YES;
+        }
+    }];
+    return targetView;
 }
 
 #pragma mark -- setter/getter

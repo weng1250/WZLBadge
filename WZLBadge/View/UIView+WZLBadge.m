@@ -252,9 +252,10 @@
 - (void)setBadgeFont:(UIFont *)badgeFont
 {
 	objc_setAssociatedObject(self, &badgeFontKey, badgeFont, OBJC_ASSOCIATION_RETAIN);
-	if (self.badge) {
-		self.badge.font = badgeFont;
-	}
+    if (!self.badge) {
+        [self badgeInit];
+    }
+    self.badge.font = badgeFont;
 }
 
 - (UIColor *)badgeBgColor
@@ -265,9 +266,10 @@
 - (void)setBadgeBgColor:(UIColor *)badgeBgColor
 {
     objc_setAssociatedObject(self, &badgeBgColorKey, badgeBgColor, OBJC_ASSOCIATION_RETAIN);
-    if (self.badge) {
-        self.badge.backgroundColor = badgeBgColor;
+    if (!self.badge) {
+        [self badgeInit];
     }
+    self.badge.backgroundColor = badgeBgColor;
 }
 
 - (UIColor *)badgeTextColor
@@ -278,9 +280,10 @@
 - (void)setBadgeTextColor:(UIColor *)badgeTextColor
 {
     objc_setAssociatedObject(self, &badgeTextColorKey, badgeTextColor, OBJC_ASSOCIATION_RETAIN);
-    if (self.badge) {
-        self.badge.textColor = badgeTextColor;
+    if (!self.badge) {
+        [self badgeInit];
     }
+    self.badge.textColor = badgeTextColor;
 }
 
 - (WBadgeAnimType)aniType
@@ -298,10 +301,11 @@
 {
     NSNumber *numObj = @(aniType);
     objc_setAssociatedObject(self, &badgeAniTypeKey, numObj, OBJC_ASSOCIATION_RETAIN);
-    if (self.badge) {
-        [self removeAnimation];
-        [self beginAnimation];
+    if (!self.badge) {
+        [self badgeInit];
     }
+    [self removeAnimation];
+    [self beginAnimation];
 }
 
 - (CGRect)badgeFrame
@@ -322,9 +326,10 @@
     NSDictionary *frameInfo = @{@"x" : @(badgeFrame.origin.x), @"y" : @(badgeFrame.origin.y),
                                 @"width" : @(badgeFrame.size.width), @"height" : @(badgeFrame.size.height)};
     objc_setAssociatedObject(self, &badgeFrameKey, frameInfo, OBJC_ASSOCIATION_RETAIN);
-    if (self.badge) {
-        self.badge.frame = badgeFrame;
+    if (!self.badge) {
+        [self badgeInit];
     }
+    self.badge.frame = badgeFrame;
 }
 
 - (CGPoint)badgeCenterOffset
@@ -342,9 +347,10 @@
 {
     NSDictionary *cenerInfo = @{@"x" : @(badgeCenterOff.x), @"y" : @(badgeCenterOff.y)};
     objc_setAssociatedObject(self, &badgeCenterOffsetKey, cenerInfo, OBJC_ASSOCIATION_RETAIN);
-    if (self.badge) {
-        self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + badgeCenterOff.x, badgeCenterOff.y);
+    if (!self.badge) {
+        [self badgeInit];
     }
+    self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + badgeCenterOff.x, badgeCenterOff.y);
 }
 
 - (NSInteger)badgeMaximumBadgeNumber {
@@ -360,6 +366,9 @@
 - (void)setBadgeMaximumBadgeNumber:(NSInteger)badgeMaximumBadgeNumber {
     NSNumber *numObj = @(badgeMaximumBadgeNumber);
     objc_setAssociatedObject(self, &badgeMaximumBadgeNumberKey, numObj, OBJC_ASSOCIATION_RETAIN);
+    if (!self.badge) {
+        [self badgeInit];
+    }
 }
 
 @end
