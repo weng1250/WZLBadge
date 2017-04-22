@@ -29,6 +29,7 @@ Here are examples for WZLBadge(just show static picture without gif here):
 
 ![](https://ww3.sinaimg.cn/large/006tKfTcgy1fevi5x1h2cj31kw0w0tdc.jpg)
 
+
 ----------
 
 
@@ -140,6 +141,9 @@ CHANGE LOG
 v1.2.6 2017.4.20
  Bugs were fixed.
  Enable setting badge properties before bage initialization.
+
+v.1.2.5 201.7.31
+ fix bug 'when showing TabbarItem bage, badge is covered by tabbarItem icon'
 
 v1.2.3 2016.2.15
  1.Enable resume badge when badge has been cleard(removed)
