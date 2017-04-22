@@ -23,11 +23,11 @@ Three animation types are supported:
  - WBadgeAnimTypeBounce
  
 
-Here are examples for WZLBadge:
+Here are examples for WZLBadge(just show static picture without gif here):
+![](https://ww2.sinaimg.cn/large/006tKfTcgy1fevi5smct4j30yi1pcn52.jpg)
 
-![](http://media.xtwind.com/images/2016/03/14/09a28a239eba55b920b804b7c356f2b8.gif)
 
-![](http://media.xtwind.com/images/2016/03/14/d1db854e8fa291c0356f76727c6c6506.gif)
+![](https://ww3.sinaimg.cn/large/006tKfTcgy1fevi5x1h2cj31kw0w0tdc.jpg)
 
 ----------
 
@@ -137,6 +137,10 @@ Feel free to open an issue or pull request, if you need help or there is a bug.
 ----------
 CHANGE LOG
 --------------------
+v1.2.6 2017.4.20
+ Bugs were fixed.
+ Enable setting badge properties before bage initialization.
+
 v1.2.3 2016.2.15
  1.Enable resume badge when badge has been cleard(removed)
 
