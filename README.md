@@ -23,11 +23,12 @@ Three animation types are supported:
  - WBadgeAnimTypeBounce
  
 
-Here are examples for WZLBadge:
+Here are examples for WZLBadge(just show static picture without gif here):
+![](https://ww2.sinaimg.cn/large/006tKfTcgy1fevi5smct4j30yi1pcn52.jpg)
 
-![](http://url.hoop8.com/qwe)
 
-![](http://url.hoop8.com/qwg)
+![](https://ww3.sinaimg.cn/large/006tKfTcgy1fevi5x1h2cj31kw0w0tdc.jpg)
+
 
 ----------
 
@@ -137,6 +138,9 @@ Feel free to open an issue or pull request, if you need help or there is a bug.
 ----------
 CHANGE LOG
 --------------------
+v1.2.6 2017.4.20
+ Bugs were fixed.
+ Enable setting badge properties before bage initialization.
 
 v.1.2.5 201.7.31
  fix bug 'when showing TabbarItem bage, badge is covered by tabbarItem icon'
