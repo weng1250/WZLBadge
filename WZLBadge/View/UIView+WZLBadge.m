@@ -150,7 +150,7 @@
         self.badge.tag = WBadgeStyleRedDot;//red dot by default
         self.badge.layer.cornerRadius = CGRectGetWidth(self.badge.frame) / 2;
         self.badge.layer.masksToBounds = YES;//very important
-        self.badge.hidden = NO;
+        self.badge.hidden = YES;
         [self addSubview:self.badge];
         [self bringSubviewToFront:self.badge];
     }
