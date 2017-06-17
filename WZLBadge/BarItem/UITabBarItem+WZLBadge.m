@@ -66,7 +66,7 @@
     // 2.get imageView, to make sure badge front at anytime.
     UIView *actualSuperView = nil;
     if (bottomView) {
-        actualSuperView = [self find:bottomView firstSubviewWithClass:NSClassFromString(@"UITabBarSwappableImageView")];
+        actualSuperView = [self find:bottomView firstSubviewWithClass:[UIImageView class]];
     }
     
     // badge label will be added onto imageView
