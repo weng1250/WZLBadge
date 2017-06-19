@@ -30,6 +30,7 @@ static char badgeAniTypeKey;
 static char badgeFrameKey;
 static char badgeCenterOffsetKey;
 static char badgeMaximumBadgeNumberKey;
+static char badgeRadiusKey;
 
 typedef NS_ENUM(NSUInteger, WBadgeStyle)
 {
@@ -71,6 +72,9 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 @property (nonatomic, assign) NSInteger badgeMaximumBadgeNumber;    /*for WBadgeStyleNumber style badge,
                                                                      if badge value is above badgeMaximumBadgeNumber,
                                                                      "badgeMaximumBadgeNumber+" will be printed. */
+
+@property (nonatomic, assign) CGFloat badgeRadius;
+// nomal use for red dot style of badge
 
 /**
  *  show badge with red dot style and WBadgeAnimTypeNone by default.

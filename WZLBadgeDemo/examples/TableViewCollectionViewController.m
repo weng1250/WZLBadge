@@ -57,13 +57,14 @@ static NSInteger const numberOfAStyle = 3;
     switch (indexPath.row%numberOfAStyle) {
         case WBadgeStyleRedDot:
         {
-            [cell.contentView showBadge];
+            cell.contentView.badgeRadius = 4.f;
             cell.contentView.badgeCenterOffset = CGPointMake(-100, 30);
+            [cell.contentView showBadge];
         }
             break;
         case WBadgeStyleNumber:
         {
-            [cell.contentView showBadgeWithStyle:WBadgeStyleNumber value:indexPath.row animationType:WBadgeAnimTypeNone];
+            [cell.contentView showNumberBadgeWithValue:indexPath.row];
             cell.contentView.badgeCenterOffset = CGPointMake(-100, 30);
         }
             break;
