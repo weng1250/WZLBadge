@@ -53,6 +53,15 @@
     }
 }
 
+- (void)showNumberBadgeWithValue:(NSInteger)value animationType:(WBadgeAnimType)aniType {
+    self.aniType = aniType;
+    [self showNumberBadgeWithValue:value];
+    
+    if (aniType != WBadgeAnimTypeNone) {
+        [self beginAnimation];
+    }
+}
+
 /**
  *  clear badge
  */

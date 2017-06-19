@@ -58,7 +58,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSArray *headTitles = @[@"badge with not any animation", @"badge with animations"];
+    NSArray *headTitles = @[@"badge with not any animation", @"badge with animations",@"extension"];
     return headTitles[section];
 }
 
