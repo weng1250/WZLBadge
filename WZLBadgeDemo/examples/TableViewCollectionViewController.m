@@ -9,7 +9,6 @@
 #import "TableViewCollectionViewController.h"
 #import "WZLBadgeImport.h"
 
-//tableview 中有collectionView
 @interface TableViewCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -24,6 +23,7 @@ static NSInteger const numberOfAStyle = 3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"test cell reuse";
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
@@ -50,7 +50,7 @@ static NSInteger const numberOfAStyle = 3;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     cell.textLabel.text = @"hello words";
-    cell.textLabel.backgroundColor = [UIColor blueColor];
+    cell.textLabel.backgroundColor = [UIColor whiteColor];
     cell.detailTextLabel.text = @"description text";
     cell.detailTextLabel.backgroundColor = [UIColor greenColor];
     
@@ -81,7 +81,7 @@ static NSInteger const numberOfAStyle = 3;
 }
 
 -  (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.f;
+    return 60.f;
 }
 
 @end

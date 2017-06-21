@@ -28,7 +28,6 @@
     [self loadTableViewDataSource];
 }
 
-
 #pragma mark -- private methods
 - (void)setup
 {
@@ -56,6 +55,7 @@
     NSMutableArray *staticBadges = [NSMutableArray array];
     NSMutableArray *dynamicBadges = [NSMutableArray array];
     
+    // static badge configure
     WBadgeStyle styles[] = {WBadgeStyleRedDot, WBadgeStyleNew, WBadgeStyleNumber, WBadgeStyleNumber};
     for (NSInteger i = 0; i < sizeof(styles) / sizeof(styles[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -74,9 +74,7 @@
         [staticBadges addObject:btn];
     }
     
-//    mutle tableview and collectionview to embed
-
-    
+    // animating badge config
     WBadgeAnimType animations[] = {WBadgeAnimTypeShake, WBadgeAnimTypeBounce, WBadgeAnimTypeBreathe, WBadgeAnimTypeScale};
     for (NSInteger i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -108,7 +106,7 @@
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:2]]) {
-        [self presentViewController:[TableViewCollectionViewController new] animated:NO completion:nil];
+        [self.navigationController pushViewController:[TableViewCollectionViewController new] animated:YES];
 
     }
   

@@ -62,14 +62,6 @@
     return headTitles[section];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    if (section == [self.dataItems count] - 1) {
-        return @"Select cell to clear badge.";
-    }
-    return nil;
-}
-
 #pragma mark - delegate of UITableView
 //to be simple, I also add delegate into datasource.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
