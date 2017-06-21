@@ -31,6 +31,15 @@
                      value:(NSInteger)value
              animationType:(WBadgeAnimType)aniType;
 
+/*
+ wBadgeStyle default is WBadgeStyleNumber
+ */
+- (void)showNumberBadgeWithValue:(NSInteger)value
+              animationType:(WBadgeAnimType)aniType;
+
+// wBadgeStyle default is WBadgeStyleNumber ;
+// WBadgeAnimType defualt is  WBadgeAnimTypeNone
+- (void)showNumberBadgeWithValue:(NSInteger)value;
 
 /**
  *  clear badge(hide badge)

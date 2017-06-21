@@ -10,6 +10,7 @@
 #import "TableViewDataSource.h"
 #import "UIView+Frame.h"
 #import "WZLBadgeImport.h"
+#import "TableViewCollectionViewController.h"
 
 @interface ViewController ()<UITableViewDelegate>
 
@@ -73,19 +74,44 @@
         [staticBadges addObject:btn];
     }
     
+//    mutle tableview and collectionview to embed
+
+    
     WBadgeAnimType animations[] = {WBadgeAnimTypeShake, WBadgeAnimTypeBounce, WBadgeAnimTypeBreathe, WBadgeAnimTypeScale};
     for (NSInteger i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
         btn.tag = 1000;
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
-        btn.layer.cornerRadius = btn.width / 2;
+        btn.layer.cornerRadius= btn.width / 2;
         [btn showBadgeWithStyle:styles[i] value:100 animationType:animations[i]];
         [dynamicBadges addObject:btn];
     }
+    
+    NSMutableArray *extensions = [NSMutableArray array];
+
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 40, 40);
+    btn.tag = 1000;
+    [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
+    btn.layer.cornerRadius = btn.width / 2;
+    [btn showBadgeWithStyle:WBadgeStyleRedDot value:100 animationType:WBadgeAnimTypeShake];
+    [extensions addObject:btn];
+    
     [dataItems addObject:staticBadges];
     [dataItems addObject:dynamicBadges];
+    [dataItems addObject:extensions];
+    
     return dataItems;
+}
+
+#pragma mark - tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:2]]) {
+        [self presentViewController:[TableViewCollectionViewController new] animated:NO completion:nil];
+
+    }
+  
 }
 
 @end

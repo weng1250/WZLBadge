@@ -14,6 +14,9 @@
 
 #define kWZLBadgeDefaultMaximumBadgeNumber                     99
 
+
+static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
+
 @implementation UIView (WZLBadge)
 
 #pragma mark -- public methods
@@ -53,6 +56,15 @@
     }
 }
 
+- (void)showNumberBadgeWithValue:(NSInteger)value animationType:(WBadgeAnimType)aniType {
+    self.aniType = aniType;
+    [self showNumberBadgeWithValue:value];
+    
+    if (aniType != WBadgeAnimTypeNone) {
+        [self beginAnimation];
+    }
+}
+
 /**
  *  clear badge
  */
@@ -79,9 +91,16 @@
     if (self.badge.tag != WBadgeStyleRedDot) {
         self.badge.text = @"";
         self.badge.tag = WBadgeStyleRedDot;
+        [self resetBadgeForRedDot];
         self.badge.layer.cornerRadius = CGRectGetWidth(self.badge.frame) / 2;
     }
     self.badge.hidden = NO;
+}
+
+- (void)resetBadgeForRedDot {
+    if (self.badgeRadius > 0) {
+        self.badge.frame = CGRectMake(self.badge.center.x - self.badgeRadius, self.badge.center.y + self.badgeRadius , self.badgeRadius * 2, self.badgeRadius *2);
+    }
 }
 
 - (void)showNewBadge
@@ -139,7 +158,7 @@
     }
     
     if (nil == self.badge) {
-        CGFloat redotWidth = 8;
+        CGFloat redotWidth = kWZLBadgeDefaultRedDotRadius *2;
         CGRect frm = CGRectMake(CGRectGetWidth(self.frame), -redotWidth, redotWidth, redotWidth);
         self.badge = [[UILabel alloc] initWithFrame:frm];
         self.badge.textAlignment = NSTextAlignmentCenter;
@@ -351,6 +370,19 @@
         [self badgeInit];
     }
     self.badge.center = CGPointMake(CGRectGetWidth(self.frame) + 2 + badgeCenterOff.x, badgeCenterOff.y);
+}
+
+//badgeRadiusKey
+
+- (void)setBadgeRadius:(CGFloat)badgeRadius {
+    objc_setAssociatedObject(self, &badgeRadiusKey, [NSNumber numberWithFloat:badgeRadius], OBJC_ASSOCIATION_RETAIN);
+    if (!self.badge) {
+        [self badgeInit];
+    }
+}
+
+- (CGFloat)badgeRadius {
+    return [objc_getAssociatedObject(self, &badgeRadiusKey) floatValue];
 }
 
 - (NSInteger)badgeMaximumBadgeNumber {
