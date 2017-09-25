@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/weng1250/WZLBadge'
   s.license          = { :type => 'None', :file => 'LICENSE' }
   s.author           = { 'Zilin Weng翁子林' => "719113951@qq.com" } 
-  s.source           = { :git => 'https://github.com/weng1250/WZLBadge.git', :tag => s.version }
+  s.source           = { :git => 'https://github.com/BeeModule/WZLBadge.git', :tag => s.version }
   s.platform         = :ios, '5.0'
   s.requires_arc     = true
 	
