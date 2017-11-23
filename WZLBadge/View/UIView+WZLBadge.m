@@ -11,6 +11,7 @@
 #import "CAAnimation+WAnimation.h"
 
 #define kWZLBadgeDefaultFont				([UIFont boldSystemFontOfSize:9])
+#define kWZLBadgeDefaultMargin				(8.0)
 
 #define kWZLBadgeDefaultMaximumBadgeNumber                     99
 
@@ -137,8 +138,8 @@ static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
                        [NSString stringWithFormat:@"%@", @(value)]);
     [self adjustLabelWidth:self.badge];
     CGRect frame = self.badge.frame;
-    frame.size.width += 4;
-    frame.size.height += 4;
+    frame.size.width += self.badgeMargin;
+    frame.size.height += self.badgeMargin;
     if(CGRectGetWidth(frame) < CGRectGetHeight(frame)) {
         frame.size.width = CGRectGetHeight(frame);
     }
@@ -383,6 +384,18 @@ static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
 
 - (CGFloat)badgeRadius {
     return [objc_getAssociatedObject(self, &badgeRadiusKey) floatValue];
+}
+
+- (void)setBadgeMargin:(CGFloat)badgeMargin {
+    objc_setAssociatedObject(self, &badgeMarginKey, [NSNumber numberWithFloat:badgeMargin], OBJC_ASSOCIATION_RETAIN);
+    if (!self.badge) {
+        [self badgeInit];
+    }
+}
+
+- (CGFloat)badgeMargin {
+    id margin = objc_getAssociatedObject(self, &badgeMarginKey);
+    return margin == nil ? kWZLBadgeDefaultMargin : [margin floatValue];
 }
 
 - (NSInteger)badgeMaximumBadgeNumber {

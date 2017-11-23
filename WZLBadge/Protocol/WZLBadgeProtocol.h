@@ -31,6 +31,8 @@ static char badgeFrameKey;
 static char badgeCenterOffsetKey;
 static char badgeMaximumBadgeNumberKey;
 static char badgeRadiusKey;
+static char badgeMarginKey;
+
 
 typedef NS_ENUM(NSUInteger, WBadgeStyle)
 {
@@ -66,6 +68,7 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
                                                                     /* For x, negative number means left offset
                                                                         For y, negative number means bottom offset */
 
+
 @property (nonatomic, assign) WBadgeAnimType aniType;               /* NOTE that this is not animation type of badge's
                                                                         appearing, nor  hidding*/
 
@@ -75,6 +78,11 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 
 @property (nonatomic, assign) CGFloat badgeRadius;
 // nomal use for red dot style of badge
+
+
+@property (nonatomic, assign) CGFloat  badgeMargin;
+/* 4 by default if not set  use for WBadgeStyleNumber style of badge*/
+
 
 /**
  *  show badge with red dot style and WBadgeAnimTypeNone by default.
