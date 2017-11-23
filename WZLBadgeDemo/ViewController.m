@@ -60,7 +60,7 @@
     for (NSInteger i = 0; i < sizeof(styles) / sizeof(styles[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
-        btn.tag = 1000;
+        btn.tag = 80;
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
         if (i == 1) {
@@ -70,7 +70,7 @@
             if (i == 2) {
                 btn.badgeBgColor = [UIColor blueColor];
             }
-        [btn showBadgeWithStyle:styles[i] value:100 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
+        [btn showBadgeWithStyle:styles[i] value:8 animationType:WBadgeAnimTypeNone];//actual badge call comes here.
         [staticBadges addObject:btn];
     }
     
@@ -79,10 +79,10 @@
     for (NSInteger i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 40, 40);
-        btn.tag = 1000;
+        btn.tag = 80;
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius= btn.width / 2;
-        [btn showBadgeWithStyle:styles[i] value:100 animationType:animations[i]];
+        [btn showBadgeWithStyle:styles[i] value:8 animationType:animations[i]];
         [dynamicBadges addObject:btn];
     }
     
@@ -90,10 +90,10 @@
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 40, 40);
-    btn.tag = 1000;
+    btn.tag = 80;
     [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
     btn.layer.cornerRadius = btn.width / 2;
-    [btn showBadgeWithStyle:WBadgeStyleRedDot value:100 animationType:WBadgeAnimTypeShake];
+    [btn showBadgeWithStyle:WBadgeStyleRedDot value:8 animationType:WBadgeAnimTypeShake];
     [extensions addObject:btn];
     
     [dataItems addObject:staticBadges];
