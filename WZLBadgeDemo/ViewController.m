@@ -63,6 +63,10 @@
         btn.tag = 1000;
         [btn setImage:[UIImage imageNamed:@"logo.jpg"] forState:UIControlStateNormal];
         btn.layer.cornerRadius = btn.width / 2;
+        
+        if (i == 0) {
+            btn.badgeRadius = 2;
+        }
         if (i == 1) {
             btn.badgeBgColor = [UIColor purpleColor];
             btn.badgeCenterOffset = CGPointMake(-btn.width, 0);
