@@ -115,8 +115,7 @@
 				19AD4E881BB3D4600059AA66 /* UITabBarItem+WZLBadge.h */,
 				19AD4E891BB3D4600059AA66 /* UITabBarItem+WZLBadge.m */,
 			);
-			name = BarItem;
-			path = BarButtonItem;
+			path = BarItem;
 			sourceTree = "<group>";
 		};
 		1968600A1B78AB4A00AD10C2 /* View */ = {
@@ -491,7 +490,7 @@
 					/Users/user/Desktop/Git/WuJieCaoJoke/WuJieCaoJoke/ThirdPart/ThirdPlatform/UMeng/umeng_ios_social_sdk_4.2.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 				);
 				INFOPLIST_FILE = WZLBadgeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,7 +527,7 @@
 					/Users/user/Desktop/Git/WuJieCaoJoke/WuJieCaoJoke/ThirdPart/ThirdPlatform/UMeng/umeng_ios_social_sdk_4.2.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 				);
 				INFOPLIST_FILE = WZLBadgeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
