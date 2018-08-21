@@ -19,6 +19,18 @@ static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
 
 @implementation UIView (WZLBadge)
 
+/**
+ By swizzling the original method - (void)willMoveToSuperview:(UIView *)newSuperview;
+ Move the badge view on top of its siblings when its super view appears every time for adjustment on iOS 11.
+ */
+- (void)wzl_willMoveToSuperview:(UIView *)newSuperview __IOS_AVAILABLE(11.0) {
+    [self wzl_willMoveToSuperview:newSuperview];
+    
+    if (newSuperview && self.badge) {
+        [self bringSubviewToFront:self.badge];
+    }
+}
+
 #pragma mark -- public methods
 /**
  *  show badge with red dot style and WBadgeAnimTypeNone by default.
