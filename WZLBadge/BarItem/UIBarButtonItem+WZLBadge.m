@@ -21,6 +21,10 @@
  */
 - (void)showBadge
 {
+    if (@available(iOS 11.0, *)) {
+        [self swizzling_willMoveToSuperview];
+    }
+    
     [kActualView showBadge];
 }
 
@@ -36,6 +40,10 @@
                      value:(NSInteger)value
              animationType:(WBadgeAnimType)aniType
 {
+    if (@available(iOS 11.0, *)) {
+        [self swizzling_willMoveToSuperview];
+    }
+    
     [kActualView showBadgeWithStyle:style value:value animationType:aniType];
 }
 
@@ -54,6 +62,20 @@
 }
 
 #pragma mark -- private method
+
+/**
+ Swizzling -[_UIButtonBarButton willMoveToSuperview:]
+ */
+- (void)swizzling_willMoveToSuperview __IOS_AVAILABLE(11.0) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SEL originalSelector = @selector(willMoveToSuperview:);
+        SEL swizzledSelector = NSSelectorFromString(@"wzl_willMoveToSuperview:");
+        Method originalMethod = class_getInstanceMethod(NSClassFromString(@"_UIButtonBarButton"), originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(super.class, swizzledSelector);
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    });
+}
 
 /**
  *  Because UIBarButtonItem is kind of NSObject, it is not able to directly attach badge.

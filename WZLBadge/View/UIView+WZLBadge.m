@@ -19,26 +19,11 @@ static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
 
 @implementation UIView (WZLBadge)
 
-#pragma mark - Swizzling
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class class = [super class];
-        SEL originalSelector = @selector(willMoveToSuperview:);
-        SEL swizzledSelector = @selector(wzl_willMoveToSuperview:);
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        method_exchangeImplementations(originalMethod, swizzledMethod);
-    });
-}
-
-
 /**
  By swizzling the original method - (void)willMoveToSuperview:(UIView *)newSuperview;
  Move the badge view on top of its siblings when its super view appears every time for adjustment on iOS 11.
-
  */
-- (void)wzl_willMoveToSuperview:(UIView *)newSuperview {
+- (void)wzl_willMoveToSuperview:(UIView *)newSuperview __IOS_AVAILABLE(11.0) {
     [self wzl_willMoveToSuperview:newSuperview];
     
     if (newSuperview && self.badge) {
